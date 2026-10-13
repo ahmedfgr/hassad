@@ -1,56 +1,30 @@
 'use client';
 
 import React from 'react';
-import { Users, TrendingUp, Leaf } from 'lucide-react';
 
 export default function AboutVision() {
-  const values = [
-    {
-      title: 'شراكات موثوقة',
-      desc: 'علاقات توريد مباشرة ومستدامة مع المزارعين وكبرى المصانع والمطاحن.',
-      icon: <Users className="w-5 h-5 text-stone-700" />,
-    },
-    {
-      title: 'جودة استثنائية',
-      desc: 'فحص مخبري صارم لمعدلات النقاء والرطوبة والبروتين لكل شحنة.',
-      icon: <TrendingUp className="w-5 h-5 text-stone-700" />,
-    },
-    {
-      title: 'استدامة الموارد',
-      desc: 'ممارسات ري ذكي وحماية لخصوبة التربة للأجيال القادمة.',
-      icon: <Leaf className="w-5 h-5 text-stone-700" />,
-    },
-  ];
-
   return (
     <section id="about" className="py-20 sm:py-28 bg-[#FAFAFA] border-b border-stone-100">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="text-xs font-bold text-amber-700 uppercase tracking-widest block mb-2">
-            رؤيتنا
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight">
-            نزرع الموثوقية بحلول زراعية مستدامة
-          </h2>
-        </div>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        {/* Centered Kicker */}
+        <span className="text-xs font-bold text-amber-700 uppercase tracking-widest block mb-3">
+          رؤيتنا ورسالتنا
+        </span>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {values.map((v, i) => (
-            <div
-              key={i}
-              className="bg-white p-8 rounded-2xl border border-stone-200/80 shadow-2xs hover:border-amber-300 transition-colors"
-            >
-              <div className="w-10 h-10 rounded-xl bg-stone-50 border border-stone-100 flex items-center justify-center mb-6">
-                {v.icon}
-              </div>
-              <h3 className="text-lg font-bold text-stone-900 mb-2">
-                {v.title}
-              </h3>
-              <p className="text-xs sm:text-sm text-stone-500 leading-relaxed">
-                {v.desc}
-              </p>
-            </div>
-          ))}
+        {/* Centered Main Headline */}
+        <h2 className="text-2xl sm:text-4xl font-extrabold text-stone-900 tracking-tight mb-8 leading-snug">
+          نزرع الموثوقية... <br />
+          <span className="text-amber-600">لتعزيز الأمن الغذائي واستدامة الإمداد</span>
+        </h2>
+
+        {/* Expanded Institutional Prose */}
+        <div className="space-y-5 text-stone-600 text-sm sm:text-base leading-relaxed max-w-3xl mx-auto text-balance">
+          <p>
+            نلتزم في شركة محاصيل بأن نكون ركيزة أساسية وموثوقة في دعم منظومة الأمن الغذائي الوطني والإقليمي، عبر إدارة وتأمين سلاسل إمداد زراعية متطورة تضمن تدفق أجود المحاصيل الحقلية الاستراتيجية من المزارع النموذجية إلى كبرى مصانع الأغذية ومطاحن الدقيق ومجمعات الإنتاج الحيواني.
+          </p>
+          <p className="text-stone-500 text-xs sm:text-sm">
+            ترتكز مسيرتنا على الجمع بين تمكين شركائنا المزارعين، وتطبيق أدق بروتوكولات الفحص والرقابة المخبرية لنسب النقاء والرطوبة وفق المعايير الدولية، لبناء شراكات تجارية طويلة الأمد تتسم بالشفافية والمسؤولية الكاملة تجاه استدامة الموارد للأجيال القادمة.
+          </p>
         </div>
       </div>
     </section>

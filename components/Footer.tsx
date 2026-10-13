@@ -20,33 +20,34 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
   };
 
   return (
-    <footer id="contact" className="bg-[#111612] text-stone-300 pt-16 pb-12 border-t border-stone-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Pre-Footer Action Box (Matches the warm banner in the attachment) */}
-        <div className="rounded-3xl bg-gradient-to-r from-[#20180F] via-[#2A1E11] to-[#1C281B] border border-amber-600/30 p-8 sm:p-12 mb-16 shadow-xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="relative z-10 flex flex-col items-center justify-center gap-6 text-center max-w-2xl mx-auto">
+    <footer id="footer" className="bg-[#111612] text-stone-300 pt-16 pb-12 border-t border-stone-800">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Pre-Footer Action Box: Styled with the Light Theme matching the Clients Section */}
+        <div className="rounded-3xl bg-white border border-stone-200/90 p-8 sm:p-12 mb-16 shadow-sm text-stone-900">
+          <div className="flex flex-col items-center justify-center gap-6 text-center max-w-2xl mx-auto">
             <div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">
+              <span className="text-xs font-bold text-amber-700 uppercase tracking-widest block mb-2">
+                انضم لشركائنا
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-stone-900 mb-2.5">
                 ابدأ شراكتك معنا اليوم
               </h3>
-              <p className="text-sm sm:text-base text-stone-300">
-                تواصل معنا للحصول على عروض أسعار تنافسية وجداول توريد مخصصة تلبي احتياجات منشأتك.
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed text-balance">
+                تواصل معنا للحصول على عروض أسعار تنافسية وجداول توريد مخصصة تلبي احتياجات منشأتك ومشاريعك التجارية.
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 shrink-0">
+            <div className="flex flex-wrap items-center justify-center gap-3.5 shrink-0">
               <button
                 onClick={onOpenQuoteModal}
                 type="button"
-                className="px-7 py-3.5 text-sm font-bold text-stone-950 bg-amber-500 hover:bg-amber-400 active:scale-95 rounded-xl transition-all shadow-md shadow-amber-500/20 whitespace-nowrap cursor-pointer"
+                className="px-7 py-3 text-xs sm:text-sm font-bold text-stone-950 bg-amber-500 hover:bg-amber-400 active:scale-95 rounded-xl transition-all shadow-sm shadow-amber-500/20 whitespace-nowrap cursor-pointer"
               >
                 طلب عرض سعر
               </button>
               <a
-                href="mailto:info@mahaseel-agri.com"
-                className="px-6 py-3.5 text-sm font-bold text-white bg-white/10 hover:bg-white/20 active:scale-95 border border-white/20 rounded-xl transition-all whitespace-nowrap"
+                href="#contact"
+                className="px-6 py-3 text-xs sm:text-sm font-bold text-stone-800 bg-stone-50 hover:bg-stone-100 active:scale-95 border border-stone-200 rounded-xl transition-all whitespace-nowrap"
               >
                 تواصل معنا
               </a>
@@ -99,7 +100,7 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
             </div>
           </div>
 
-          {/* Col 2: Quick Links (2 cols) */}
+          {/* Col 2: Quick Links (2 cols) - Without Sustainability */}
           <div className="lg:col-span-2 space-y-3">
             <h4 className="text-sm font-bold text-white tracking-wider">روابط سريعة</h4>
             <ul className="space-y-2 text-xs sm:text-sm text-stone-400">
@@ -113,7 +114,7 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
                 <a href="#crops" className="hover:text-amber-400 transition-colors">منتجاتنا</a>
               </li>
               <li>
-                <a href="#sustainability" className="hover:text-amber-400 transition-colors">الاستدامة</a>
+                <a href="#clients" className="hover:text-amber-400 transition-colors">عملاؤنا</a>
               </li>
               <li>
                 <a href="#contact" className="hover:text-amber-400 transition-colors">اتصل بنا</a>
