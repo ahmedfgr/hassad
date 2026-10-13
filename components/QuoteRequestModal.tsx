@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { X, CheckCircle2, Send, Wheat } from 'lucide-react';
+import Image from 'next/image';
+import { X, CheckCircle2, Send } from 'lucide-react';
 import { CROPS_DATA } from '@/lib/cropsData';
+import { THEME_COLORS } from '@/lib/theme';
 
 interface QuoteRequestModalProps {
   isOpen: boolean;
@@ -76,11 +78,18 @@ export default function QuoteRequestModal({
         {/* Header */}
         <div className="p-6 bg-stone-900 text-white relative flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-500 text-stone-950 flex items-center justify-center font-bold">
-              <Wheat className="w-6 h-6" />
+            <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-white/10 p-1 border border-white/20 flex items-center justify-center shadow-md">
+              <Image
+                src="/logo.png"
+                alt="شعار حصاد"
+                width={40}
+                height={40}
+                className="w-full h-full object-contain"
+                referrerPolicy="no-referrer"
+              />
             </div>
             <div>
-              <h3 className="text-lg font-bold">طلب عرض سعر وتوريد محاصيل</h3>
+              <h3 className="text-lg font-bold">طلب عرض سعر وتوريد محاصيل | حصاد</h3>
               <p className="text-xs text-stone-300">
                 فريق المبيعات واللوجستيات يتواصل معك خلال ساعات العمل الرسمية
               </p>
@@ -108,13 +117,13 @@ export default function QuoteRequestModal({
                 تم استلام طلبك بنجاح!
               </h4>
               <p className="text-sm text-stone-600 max-w-md mx-auto leading-relaxed">
-                شكراً لتواصلك مع شركة محاصيل. تم إحالة طلب التسعير لممثلنا التجاري وسيقوم بالتواصل معكم قريباً عبر رقم الهاتف {formData.phone}.
+                شكراً لتواصلك مع شركة حصاد (HSSAD). تم إحالة طلب التسعير لممثلنا التجاري وسيقوم بالتواصل معكم قريباً عبر رقم الهاتف {formData.phone}.
               </p>
               <div className="pt-4">
                 <button
                   onClick={handleReset}
                   type="button"
-                  className="px-6 py-2.5 text-sm font-bold text-stone-950 bg-amber-500 hover:bg-amber-400 rounded-xl transition-all cursor-pointer"
+                  className="px-6 py-2.5 text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] rounded-xl transition-all cursor-pointer shadow-md shadow-[#E5B842]/25"
                 >
                   حسناً، تم
                 </button>
@@ -139,7 +148,7 @@ export default function QuoteRequestModal({
                     value={formData.clientName}
                     onChange={(e) => setFormData({ ...formData, clientName: e.target.value })}
                     placeholder="الاسم الكريم"
-                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors"
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/20 focus:border-[#C89B3C] transition-colors"
                   />
                 </div>
 
@@ -152,7 +161,7 @@ export default function QuoteRequestModal({
                     value={formData.companyName}
                     onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
                     placeholder="اسم المنشأة التجارية"
-                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors"
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/20 focus:border-[#C89B3C] transition-colors"
                   />
                 </div>
               </div>
@@ -166,7 +175,7 @@ export default function QuoteRequestModal({
                     required
                     value={formData.cropType}
                     onChange={(e) => setFormData({ ...formData, cropType: e.target.value })}
-                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors"
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/20 focus:border-[#C89B3C] transition-colors"
                   >
                     <option value="">اختر نوع المحصول...</option>
                     {CROPS_DATA.map((c) => (
@@ -187,7 +196,7 @@ export default function QuoteRequestModal({
                     value={formData.quantityTons}
                     onChange={(e) => setFormData({ ...formData, quantityTons: e.target.value })}
                     placeholder="مثال: 50 طن أو صب 1000 طن"
-                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors"
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/20 focus:border-[#C89B3C] transition-colors"
                   />
                 </div>
               </div>
@@ -203,7 +212,7 @@ export default function QuoteRequestModal({
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="مثال: +966 50 123 4567"
-                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors text-left"
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/20 focus:border-[#C89B3C] transition-colors text-left"
                     dir="ltr"
                   />
                 </div>
@@ -217,7 +226,7 @@ export default function QuoteRequestModal({
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="office@company.com"
-                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors text-left"
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/20 focus:border-[#C89B3C] transition-colors text-left"
                     dir="ltr"
                   />
                 </div>
@@ -232,7 +241,7 @@ export default function QuoteRequestModal({
                   value={formData.destination}
                   onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
                   placeholder="مثال: مستودعات الرياض، ميناء الملك عبدالعزيز بالدمام، ميناء جدة الإسلامي..."
-                  className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors"
+                  className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/20 focus:border-[#C89B3C] transition-colors"
                 />
               </div>
 
@@ -245,14 +254,14 @@ export default function QuoteRequestModal({
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                   placeholder="أي اشتراطات خاصة بنسبة الرطوبة أو جدول مواعيد التوريد..."
-                  className="w-full px-3.5 py-2 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors"
+                  className="w-full px-3.5 py-2 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#E5B842]/20 focus:border-[#E5B842] transition-colors"
                 />
               </div>
 
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-3 text-sm font-bold text-stone-950 bg-amber-500 hover:bg-amber-400 active:scale-[0.99] rounded-xl transition-all shadow-md shadow-amber-500/20 flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3 text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] active:scale-[0.99] rounded-xl transition-all shadow-md shadow-[#E5B842]/25 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
                   <span>إرسال طلب عرض السعر</span>

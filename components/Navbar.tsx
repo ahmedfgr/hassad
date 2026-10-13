@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Wheat, ArrowLeft } from 'lucide-react';
+import Image from 'next/image';
+import { Menu, X, ArrowLeft } from 'lucide-react';
+import { THEME_COLORS } from '@/lib/theme';
 
 interface NavbarProps {
   onOpenQuoteModal: (cropName?: string) => void;
@@ -29,37 +31,45 @@ export default function Navbar({ onOpenQuoteModal }: NavbarProps) {
           : 'top-0 px-0'
       }`}
     >
-      {/* Navbar Container: Seamless at top, floating with radius on scroll */}
+      {/* Navbar Container */}
       <div
         className={`transition-all duration-300 ease-out ${
           scrolled
             ? 'max-w-5xl mx-auto rounded-2xl bg-stone-950/90 backdrop-blur-md border border-white/15 shadow-2xl px-4 sm:px-8 py-2.5'
-            : 'w-full bg-gradient-to-b from-black/70 via-black/25 to-transparent border-b border-white/10 px-4 sm:px-8 lg:px-12 py-3.5 sm:py-4'
+            : 'w-full bg-gradient-to-b from-black/75 via-black/30 to-transparent border-b border-white/10 px-4 sm:px-8 lg:px-12 py-3.5 sm:py-4'
         }`}
       >
         <div className="flex items-center justify-between gap-4 sm:gap-6">
-          {/* Zone 1: Brand Wordmark */}
+          {/* Zone 1: Official Brand Logo & Wordmark (حصاد - HSSAD) */}
           <a
             href="#"
-            className="flex items-center gap-2 sm:gap-2.5 text-white group whitespace-nowrap shrink-0"
-            aria-label="محاصيل - الصفحة الرئيسية"
+            className="flex items-center gap-2.5 text-white group whitespace-nowrap shrink-0 rounded-full px-3.5 py-1.5 bg-stone-900/60 hover:bg-stone-900/80 backdrop-blur-md border border-white/15 shadow-sm transition-all"
+            aria-label="حصاد - الصفحة الرئيسية"
           >
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-amber-500 flex items-center justify-center text-stone-950 shadow-md group-hover:scale-105 transition-transform">
-              <Wheat className="w-4.5 h-4.5 sm:w-5 sm:h-5 stroke-[2.4]" />
+            <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden bg-white/10 border border-white/20 p-0.5 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform">
+              <Image
+                src="/logo.png"
+                alt="شعار حصاد"
+                width={36}
+                height={36}
+                className="w-full h-full object-contain"
+                referrerPolicy="no-referrer"
+                priority
+              />
             </div>
-            <div className="flex flex-col">
-              <span className="text-base sm:text-lg font-bold tracking-tight text-white drop-shadow-xs">محاصيل</span>
-              <span className="text-[8px] sm:text-[9px] tracking-widest font-semibold text-stone-300 uppercase -mt-0.5 font-mono">
-                MAHASEEL AGRI
+            <div className="flex flex-col pl-1">
+              <span className="text-sm sm:text-base font-bold tracking-tight text-white drop-shadow-xs">حصاد</span>
+              <span className="text-[8px] sm:text-[9px] tracking-widest font-semibold text-[#F3D78A] uppercase -mt-0.5 font-mono">
+                HSSAD AGRI
               </span>
             </div>
           </a>
 
-          {/* Zone 2: Navigation Links (Clean White Text) - Without Sustainability */}
+          {/* Zone 2: Navigation Links (Clean White & Radiant Gold Active State) */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-7 text-xs lg:text-sm font-semibold text-stone-200">
             <a
               href="#hero"
-              className="text-amber-400 hover:text-amber-300 transition-colors whitespace-nowrap shrink-0 border-b-2 border-amber-400 pb-0.5"
+              className="text-[#F0C446] hover:text-[#F8E39E] transition-colors whitespace-nowrap shrink-0 border-b-2 border-[#E5B842] pb-0.5"
             >
               الرئيسية
             </a>
@@ -91,11 +101,11 @@ export default function Navbar({ onOpenQuoteModal }: NavbarProps) {
 
           {/* Zone 3: Primary Action & Mobile Menu Toggle */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            {/* Desktop CTA */}
+            {/* Desktop CTA in Bright Radiant Gold */}
             <button
               onClick={() => onOpenQuoteModal()}
               type="button"
-              className="hidden sm:flex items-center gap-1.5 px-4.5 py-2 text-xs sm:text-sm font-bold text-stone-950 bg-amber-500 hover:bg-amber-400 active:scale-[0.98] rounded-xl transition-all shadow-md shadow-amber-500/20 whitespace-nowrap cursor-pointer"
+              className="hidden sm:flex items-center gap-1.5 px-4.5 py-2 text-xs sm:text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] active:scale-[0.98] rounded-xl transition-all shadow-md shadow-[#E5B842]/30 whitespace-nowrap cursor-pointer"
             >
               <span>طلب عرض سعر</span>
               <span aria-hidden="true" className="text-stone-900">←</span>
@@ -113,13 +123,13 @@ export default function Navbar({ onOpenQuoteModal }: NavbarProps) {
           </div>
         </div>
 
-        {/* Mobile Dropdown Drawer: Properly proportioned, clean glassmorphic card */}
+        {/* Mobile Dropdown Drawer */}
         {mobileMenuOpen && (
           <div className="md:hidden mt-3 pt-3 pb-2 border-t border-white/15 space-y-1.5 animate-in fade-in slide-in-from-top-2 duration-200">
             <a
               href="#hero"
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3.5 py-2.5 text-xs font-bold text-amber-400 rounded-xl bg-white/5 flex items-center justify-between"
+              className="px-3.5 py-2.5 text-xs font-bold text-[#F0C446] rounded-xl bg-white/5 flex items-center justify-between"
             >
               <span>الرئيسية</span>
               <ArrowLeft className="w-3.5 h-3.5" />
@@ -157,7 +167,7 @@ export default function Navbar({ onOpenQuoteModal }: NavbarProps) {
               <ArrowLeft className="w-3.5 h-3.5 text-stone-400" />
             </a>
 
-            {/* Mobile Quote CTA Button */}
+            {/* Mobile Quote CTA Button in Bright Gold */}
             <div className="pt-2">
               <button
                 onClick={() => {
@@ -165,7 +175,7 @@ export default function Navbar({ onOpenQuoteModal }: NavbarProps) {
                   onOpenQuoteModal();
                 }}
                 type="button"
-                className="w-full py-2.5 px-4 text-xs font-bold text-stone-950 bg-amber-500 hover:bg-amber-400 rounded-xl transition-all shadow-sm flex items-center justify-center gap-1.5 cursor-pointer"
+                className="w-full py-2.5 px-4 text-xs font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] rounded-xl transition-all shadow-sm flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <span>طلب عرض سعر فوري</span>
                 <span>←</span>

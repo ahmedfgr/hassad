@@ -61,7 +61,7 @@ export default function ProductDetailModal({
 
           {/* Title & Category overlaid on the header */}
           <div className="absolute bottom-5 right-6 left-6 z-10 text-white">
-            <span className="text-xs font-semibold text-amber-300 tracking-wider mb-1 block">
+            <span className="text-xs font-semibold text-[#F3D78A] tracking-wider mb-1 block">
               {crop.categoryLabel}
             </span>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
@@ -86,12 +86,12 @@ export default function ProductDetailModal({
           <div className="bg-stone-50/80 rounded-2xl p-6 border border-stone-200/80">
             <h4 className="text-xs font-bold text-stone-900 uppercase tracking-wider mb-4 flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span>المواصفات والتحاليل المخبرية المعتمدة</span>
+              <span>المواصفات والتحاليل المخبرية المعتمدة | حصاد</span>
             </h4>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
               <div className="flex items-start gap-2.5">
-                <Check className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                <Check className="w-4 h-4 text-[#E5B842] shrink-0 mt-0.5" />
                 <div>
                   <span className="font-semibold text-stone-700">نسبة النقاء: </span>
                   <span className="text-stone-600">{crop.specs.purity}</span>
@@ -107,7 +107,7 @@ export default function ProductDetailModal({
               </div>
 
               <div className="flex items-start gap-2.5">
-                <Box className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+                <Box className="w-4 h-4 text-[#A87913] shrink-0 mt-0.5" />
                 <div>
                   <span className="font-semibold text-stone-700">التعبئة والشحن: </span>
                   <span className="text-stone-600">{crop.specs.packaging}</span>
@@ -146,7 +146,7 @@ export default function ProductDetailModal({
               onRequestQuote(crop.name);
             }}
             type="button"
-            className="w-full sm:w-auto px-6 py-2.5 text-xs sm:text-sm font-bold text-stone-950 bg-amber-500 hover:bg-amber-400 rounded-xl transition-all shadow-xs cursor-pointer"
+            className="w-full sm:w-auto px-6 py-2.5 text-xs sm:text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] rounded-xl transition-all shadow-md shadow-[#E5B842]/25 cursor-pointer"
           >
             طلب تسعير لهذا المحصول
           </button>

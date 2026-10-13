@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { Search } from 'lucide-react';
 import { CROPS_DATA, CropItem } from '@/lib/cropsData';
 import CropCard from './CropCard';
 
@@ -14,7 +13,6 @@ type CategoryType = 'all' | 'grains' | 'seeds' | 'fodder' | 'other';
 
 export default function CropsCatalog({ onSelectCrop, onRequestQuote }: CropsCatalogProps) {
   const [activeCategory, setActiveCategory] = useState<CategoryType>('all');
-  const [searchQuery, setSearchQuery] = useState('');
 
   const categories = [
     { id: 'all', label: 'الكل' },
@@ -25,55 +23,40 @@ export default function CropsCatalog({ onSelectCrop, onRequestQuote }: CropsCata
 
   const filteredCrops = useMemo(() => {
     return CROPS_DATA.filter((crop) => {
-      const matchesCategory =
-        activeCategory === 'all' || crop.category === activeCategory;
-      const matchesSearch =
-        crop.name.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesCategory && matchesSearch;
+      return activeCategory === 'all' || crop.category === activeCategory;
     });
-  }, [activeCategory, searchQuery]);
+  }, [activeCategory]);
 
   return (
     <section id="crops" className="py-20 sm:py-28 bg-white border-b border-stone-100">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Centered Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <span className="text-xs font-bold text-amber-700 uppercase tracking-widest block mb-2">
-            المنتجات
+          <span className="text-xs font-bold text-[#A87913] uppercase tracking-widest block mb-2">
+            منتجات حصاد
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight">
-            أصناف منتقاة بأعلى معايير النقاء
+            أصناف منتقاة بأعلى معايير النقاء والجودة
           </h2>
         </div>
 
-        {/* Centered Filter & Search Bar */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-14">
-          <div className="flex items-center gap-1 p-1 bg-stone-100 rounded-xl">
+        {/* Centered Category Filter Bar */}
+        <div className="flex items-center justify-center mb-14">
+          <div className="flex items-center gap-1 p-1 bg-stone-100/90 rounded-xl border border-stone-200/60">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id as CategoryType)}
                 type="button"
-                className={`px-3.5 py-1.5 text-xs font-bold rounded-lg transition-colors cursor-pointer ${
+                className={`px-4 sm:px-5 py-1.5 text-xs sm:text-sm font-bold rounded-lg transition-colors cursor-pointer ${
                   activeCategory === cat.id
-                    ? 'bg-white text-stone-900 shadow-2xs'
-                    : 'text-stone-500 hover:text-stone-900'
+                    ? 'bg-[#E5B842] text-stone-950 shadow-sm shadow-[#E5B842]/25'
+                    : 'text-stone-600 hover:text-stone-950'
                 }`}
               >
                 {cat.label}
               </button>
             ))}
-          </div>
-
-          <div className="relative">
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="بحث سريع..."
-              className="w-44 sm:w-52 pl-3 pr-8 py-1.5 text-xs bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:border-stone-400 transition-colors"
-            />
-            <Search className="w-3.5 h-3.5 text-stone-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
         </div>
 

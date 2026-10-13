@@ -50,11 +50,11 @@ export default function HomePage() {
           onOpenQuote={() => handleOpenQuote()}
         />
 
+        {/* Centered Institutional Vision (Prose without cards) - Immediately below Hero */}
+        <AboutVision />
+
         {/* Secondary Hero: Strategic Partnership with Abu Dhabi Platform */}
         <AbuDhabiPartnership onOpenQuote={() => handleOpenQuote()} />
-
-        {/* Centered Institutional Vision (Prose without cards) */}
-        <AboutVision />
 
         {/* Minimal Crops Catalog with Full-Bleed Image Cards */}
         <CropsCatalog
