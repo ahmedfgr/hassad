@@ -1,0 +1,6 @@
+{
+  "name": "شركة محاصيل الزراعية | Mahaseel Agricultural",
+  "description": "موقع رسمي تعريفي لشركة محاصيل الزراعية المتخصصة في إنتاج وتوريد أجود المحاصيل الغذائية والأعلاف والأمن الغذائي المستدام.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
