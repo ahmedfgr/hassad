@@ -1,17 +1,31 @@
 'use client';
 
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import AbuDhabiPartnership from '@/components/AbuDhabiPartnership';
 import AboutVision from '@/components/AboutVision';
+import AbuDhabiPartnership from '@/components/AbuDhabiPartnership';
 import CropsCatalog from '@/components/CropsCatalog';
-import ClientsSection from '@/components/ClientsSection';
-import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
-import ProductDetailModal from '@/components/ProductDetailModal';
-import QuoteRequestModal from '@/components/QuoteRequestModal';
 import { CropItem } from '@/lib/cropsData';
+
+// Progressive dynamic component loading for optimal browser caching & code splitting
+const ClientsSection = dynamic(() => import('@/components/ClientsSection'), {
+  loading: () => <div className="py-20 bg-stone-50/40 min-h-[280px]" />,
+});
+
+const ContactSection = dynamic(() => import('@/components/ContactSection'), {
+  loading: () => <div className="py-20 min-h-[240px]" />,
+});
+
+const ProductDetailModal = dynamic(() => import('@/components/ProductDetailModal'), {
+  ssr: false,
+});
+
+const QuoteRequestModal = dynamic(() => import('@/components/QuoteRequestModal'), {
+  ssr: false,
+});
 
 export default function HomePage() {
   const [selectedCrop, setSelectedCrop] = useState<CropItem | null>(null);
@@ -56,16 +70,16 @@ export default function HomePage() {
         {/* Secondary Hero: Strategic Partnership with Abu Dhabi Platform */}
         <AbuDhabiPartnership onOpenQuote={() => handleOpenQuote()} />
 
-        {/* Minimal Crops Catalog with Full-Bleed Image Cards */}
+        {/* Crops Catalog with Strictly 4 Curated Crops */}
         <CropsCatalog
           onSelectCrop={(crop) => setSelectedCrop(crop)}
           onRequestQuote={(cropName) => handleOpenQuote(cropName)}
         />
 
-        {/* Clients & Partners Cards Section */}
+        {/* Progressive Dynamic Clients Section */}
         <ClientsSection />
 
-        {/* Minimalist Contact Section (2 Horizontal Cards: Email & Phone) */}
+        {/* Progressive Dynamic Contact Section */}
         <ContactSection />
       </main>
 
@@ -73,19 +87,23 @@ export default function HomePage() {
       <Footer onOpenQuoteModal={() => handleOpenQuote()} />
 
       {/* Product Quick-View Modal */}
-      <ProductDetailModal
-        crop={selectedCrop}
-        onClose={() => setSelectedCrop(null)}
-        onRequestQuote={(cropName) => handleOpenQuote(cropName)}
-      />
+      {selectedCrop && (
+        <ProductDetailModal
+          crop={selectedCrop}
+          onClose={() => setSelectedCrop(null)}
+          onRequestQuote={(cropName) => handleOpenQuote(cropName)}
+        />
+      )}
 
       {/* Interactive Quotation & Supply Request Modal */}
-      <QuoteRequestModal
-        key={selectedCropForQuote + '-' + (quoteModalOpen ? 'open' : 'closed')}
-        isOpen={quoteModalOpen}
-        onClose={() => setQuoteModalOpen(false)}
-        initialCropName={selectedCropForQuote}
-      />
+      {quoteModalOpen && (
+        <QuoteRequestModal
+          key={selectedCropForQuote + '-' + (quoteModalOpen ? 'open' : 'closed')}
+          isOpen={quoteModalOpen}
+          onClose={() => setQuoteModalOpen(false)}
+          initialCropName={selectedCropForQuote}
+        />
+      )}
     </div>
   );
 }

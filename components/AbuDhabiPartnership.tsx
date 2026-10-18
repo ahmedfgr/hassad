@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { ArrowLeft, Globe2, Building } from 'lucide-react';
+import { motion } from 'motion/react';
 
 interface AbuDhabiPartnershipProps {
   onOpenQuote: () => void;
@@ -17,9 +18,15 @@ export default function AbuDhabiPartnership({ onOpenQuote }: AbuDhabiPartnership
     <section className="py-16 sm:py-24 bg-[#FAFAFA] border-b border-stone-100 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Right Column in RTL: Image on the right */}
-          <div className="lg:col-span-6 order-1 lg:order-1">
-            <div className="relative aspect-[4/3] sm:aspect-[16/11] w-full rounded-3xl overflow-hidden border border-stone-200/80 shadow-lg group">
+          {/* Right Column in RTL: Image on the right - slides in from right */}
+          <motion.div
+            initial={{ opacity: 0, x: 40, scale: 0.97 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-6 order-1 lg:order-1"
+          >
+            <div className="relative aspect-[4/3] sm:aspect-[16/11] w-full rounded-3xl overflow-hidden border border-stone-200/80 group">
               {!imgFailed ? (
                 <Image
                   src={partnerImageUrl}
@@ -48,10 +55,16 @@ export default function AbuDhabiPartnership({ onOpenQuote }: AbuDhabiPartnership
                 </h4>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Left Column in RTL: Condensed Text on the left */}
-          <div className="lg:col-span-6 order-2 lg:order-2 flex flex-col justify-center">
+          {/* Left Column in RTL: Condensed Text on the left - slides in from left */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+            className="lg:col-span-6 order-2 lg:order-2 flex flex-col justify-center"
+          >
             {/* Tag / Kicker in Bright Gold */}
             <div className="inline-flex items-center gap-2 text-xs font-bold text-[#C99726] uppercase tracking-widest mb-2.5">
               <span>شراكة استراتيجية</span>
@@ -70,16 +83,18 @@ export default function AbuDhabiPartnership({ onOpenQuote }: AbuDhabiPartnership
 
             {/* Action button in Bright Gold */}
             <div>
-              <button
+              <motion.button
                 onClick={onOpenQuote}
                 type="button"
-                className="px-6 py-3 text-xs sm:text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] active:scale-[0.98] rounded-xl transition-all shadow-md shadow-[#E5B842]/25 inline-flex items-center gap-2 cursor-pointer"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="px-6 py-3 text-xs sm:text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] rounded-xl border border-[#E5B842] transition-colors inline-flex items-center gap-2 cursor-pointer"
               >
                 <span>طلب شراكة وتوريد عبر المنصة</span>
                 <ArrowLeft className="w-4 h-4" />
-              </button>
+              </motion.button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

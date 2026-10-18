@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ArrowLeft } from 'lucide-react';
+import { motion } from 'motion/react';
 
 interface HeroProps {
   onExploreCrops: () => void;
@@ -38,7 +39,7 @@ export default function Hero({ onExploreCrops, onOpenQuote }: HeroProps) {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-[94vh] flex items-center justify-center overflow-hidden bg-stone-950 text-white rounded-b-[2.5rem] sm:rounded-b-[4rem] shadow-2xl">
+    <section id="hero" className="relative min-h-[94vh] flex items-center justify-center overflow-hidden bg-stone-950 text-white rounded-b-[2.5rem] sm:rounded-b-[4rem] border-b border-stone-800/80">
       {/* 1. Cinematic Slideshow Images with Ken Burns Slow Zoom Effect */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {HERO_IMAGES.map((img, idx) => {
@@ -72,45 +73,74 @@ export default function Hero({ onExploreCrops, onOpenQuote }: HeroProps) {
       {/* 3. Hero Content Container */}
       <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-24 sm:pt-44 sm:pb-32 text-center flex flex-col items-center">
         {/* Subtle Brand Tag with Wheat Gold Tone */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/45 backdrop-blur-md border border-[#E5B842]/35 text-xs font-semibold text-[#F3D78A] mb-8 shadow-sm">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/45 backdrop-blur-md border border-[#E5B842]/35 text-xs font-semibold text-[#F3D78A] mb-8"
+        >
           <span>شركة حصاد لتوريد المحاصيل الزراعية</span>
-        </div>
+        </motion.div>
 
         {/* High-Contrast Cinematic Headline with Radiant Bright Gold Accent */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.2] max-w-4xl mx-auto mb-6 text-balance drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)]">
+        <motion.h1
+          initial={{ opacity: 0, y: 30, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.2] max-w-4xl mx-auto mb-6 text-balance"
+        >
           محاصيل نقية. <br />
-          <span className="text-[#F3D78A] drop-shadow-[0_4px_22px_rgba(229,184,66,0.55)]">
+          <span className="text-[#F3D78A]">
             أمن غذائي مستدام.
           </span>
-        </h1>
+        </motion.h1>
 
         {/* Value Proposition */}
-        <p className="text-base sm:text-xl text-stone-100 max-w-2xl mx-auto mb-12 leading-relaxed text-balance drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] font-medium">
+        <motion.p
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          className="text-base sm:text-xl text-stone-100 max-w-2xl mx-auto mb-12 leading-relaxed text-balance font-medium"
+        >
           نوفر أجود الحبوب والبذور والأعلاف للأسواق الإقليمية والدولية وفق أعلى مقاييس النقاء والمواصفات المعتمدة.
-        </p>
+        </motion.p>
 
         {/* Minimal High-Contrast CTAs in Radiant Bright Gold */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-12">
-          <button
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.6 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-12"
+        >
+          <motion.button
             onClick={onExploreCrops}
             type="button"
-            className="w-full sm:w-auto px-8 py-4 text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] active:scale-[0.98] rounded-xl transition-all shadow-xl shadow-[#E5B842]/30 flex items-center justify-center gap-2 cursor-pointer"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="w-full sm:w-auto px-8 py-4 text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] rounded-xl border border-[#E5B842] transition-colors flex items-center justify-center gap-2 cursor-pointer"
           >
             <span>استعراض المحاصيل</span>
             <ArrowLeft className="w-4 h-4" />
-          </button>
+          </motion.button>
 
-          <button
+          <motion.button
             onClick={onOpenQuote}
             type="button"
-            className="w-full sm:w-auto px-8 py-4 text-sm font-bold text-white bg-black/40 hover:bg-black/60 border border-white/30 active:scale-[0.98] rounded-xl transition-all backdrop-blur-md cursor-pointer shadow-md"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="w-full sm:w-auto px-8 py-4 text-sm font-bold text-white bg-black/40 hover:bg-black/60 border border-white/30 rounded-xl transition-all backdrop-blur-md cursor-pointer"
           >
             طلب عرض سعر
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
 
         {/* 4. Elegant Slideshow Progress Indicators */}
-        <div className="flex items-center gap-2.5 pt-4">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.75 }}
+          className="flex items-center gap-2.5 pt-4"
+        >
           {HERO_IMAGES.map((_, i) => (
             <button
               key={i}
@@ -118,13 +148,13 @@ export default function Hero({ onExploreCrops, onOpenQuote }: HeroProps) {
               type="button"
               className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer ${
                 i === currentIndex
-                  ? 'w-8 bg-[#E5B842] shadow-sm shadow-[#E5B842]/50'
+                  ? 'w-8 bg-[#E5B842]'
                   : 'w-2 bg-white/35 hover:bg-white/60'
               }`}
               aria-label={`عرض الصورة ${i + 1}`}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

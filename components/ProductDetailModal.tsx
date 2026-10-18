@@ -27,7 +27,7 @@ export default function ProductDetailModal({
       className="fixed inset-0 z-50 overflow-y-auto bg-stone-900/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6"
     >
       <div
-        className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-stone-200 overflow-hidden transform transition-all animate-in fade-in zoom-in-95 duration-200"
+        className="relative w-full max-w-2xl bg-white rounded-3xl border border-stone-200 overflow-hidden transform transition-all animate-in fade-in zoom-in-95 duration-200"
       >
         {/* Clean Header with Crop Photo */}
         <div className="relative h-44 sm:h-52 w-full overflow-hidden border-b border-stone-100 bg-stone-900">
@@ -121,6 +121,36 @@ export default function ProductDetailModal({
                   <span className="text-stone-600">{crop.specs.standard}</span>
                 </div>
               </div>
+
+              {crop.specs.protein && (
+                <div className="flex items-start gap-2.5">
+                  <Check className="w-4 h-4 text-[#E5B842] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-semibold text-stone-700">نسبة البروتين: </span>
+                    <span className="text-stone-600">{crop.specs.protein}</span>
+                  </div>
+                </div>
+              )}
+
+              {crop.specs.rfv && (
+                <div className="flex items-start gap-2.5">
+                  <Check className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-semibold text-stone-700">معيار RFV: </span>
+                    <span className="text-stone-600">{crop.specs.rfv}</span>
+                  </div>
+                </div>
+              )}
+
+              {crop.specs.origin && (
+                <div className="flex items-start gap-2.5 sm:col-span-2">
+                  <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-semibold text-stone-700">بلد المنشأ المعتمد: </span>
+                    <span className="text-stone-600">{crop.specs.origin}</span>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="mt-4 pt-4 border-t border-stone-200/60 text-xs sm:text-sm">
@@ -146,7 +176,7 @@ export default function ProductDetailModal({
               onRequestQuote(crop.name);
             }}
             type="button"
-            className="w-full sm:w-auto px-6 py-2.5 text-xs sm:text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] rounded-xl transition-all shadow-md shadow-[#E5B842]/25 cursor-pointer"
+            className="w-full sm:w-auto px-6 py-2.5 text-xs sm:text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] rounded-xl border border-[#E5B842] transition-colors cursor-pointer"
           >
             طلب تسعير لهذا المحصول
           </button>

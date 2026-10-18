@@ -74,11 +74,11 @@ export default function QuoteRequestModal({
       aria-modal="true"
       className="fixed inset-0 z-50 overflow-y-auto bg-stone-900/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6"
     >
-      <div className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-stone-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-xl bg-white rounded-3xl border border-stone-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
         {/* Header */}
         <div className="p-6 bg-stone-900 text-white relative flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-white/10 p-1 border border-white/20 flex items-center justify-center shadow-md">
+            <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-white/10 p-1 border border-white/20 flex items-center justify-center">
               <Image
                 src="/logo.png"
                 alt="شعار حصاد"
@@ -123,7 +123,7 @@ export default function QuoteRequestModal({
                 <button
                   onClick={handleReset}
                   type="button"
-                  className="px-6 py-2.5 text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] rounded-xl transition-all cursor-pointer shadow-md shadow-[#E5B842]/25"
+                  className="px-6 py-2.5 text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] rounded-xl border border-[#E5B842] transition-colors cursor-pointer"
                 >
                   حسناً، تم
                 </button>
@@ -261,7 +261,7 @@ export default function QuoteRequestModal({
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-3 text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] active:scale-[0.99] rounded-xl transition-all shadow-md shadow-[#E5B842]/25 flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3 text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] active:scale-[0.99] rounded-xl border border-[#E5B842] transition-colors flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
                   <span>إرسال طلب عرض السعر</span>

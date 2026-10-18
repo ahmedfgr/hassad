@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { Mail, Phone, MapPin, Send, CheckCircle2 } from 'lucide-react';
+import { motion } from 'motion/react';
 import { THEME_COLORS } from '@/lib/theme';
 
 interface FooterProps {
@@ -23,13 +24,25 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
 
   return (
     <footer id="footer" className="px-3 sm:px-6 lg:px-10 pb-6 sm:pb-8 pt-4">
-      <div className="rounded-[2.5rem] sm:rounded-[3.5rem] lg:rounded-[4rem] bg-[#111612] text-stone-300 pt-14 sm:pt-16 pb-12 px-5 sm:px-8 lg:px-12 border border-stone-800 shadow-2xl relative overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0, y: 45 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+        className="rounded-[2.5rem] sm:rounded-[3.5rem] lg:rounded-[4rem] bg-[#111612] text-stone-300 pt-14 sm:pt-16 pb-12 px-5 sm:px-8 lg:px-12 border border-stone-800 relative overflow-hidden"
+      >
         {/* Subtle decorative wheat gold ambient glow in the footer */}
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#E5B842]/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-6xl mx-auto">
           {/* Pre-Footer Action Box: Light theme matching Clients section with Wheat Gold CTA */}
-          <div className="rounded-3xl bg-white border border-stone-200/90 p-8 sm:p-12 mb-16 shadow-sm text-stone-900">
+          <motion.div
+            initial={{ opacity: 0, y: 25, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7 }}
+            className="rounded-3xl bg-white border border-stone-200/90 p-8 sm:p-12 mb-16 text-stone-900"
+          >
             <div className="flex flex-col items-center justify-center gap-6 text-center max-w-2xl mx-auto">
               <div>
                 <span className="text-xs font-bold text-[#A87913] uppercase tracking-widest block mb-2">
@@ -47,7 +60,7 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
                 <button
                   onClick={onOpenQuoteModal}
                   type="button"
-                  className="px-7 py-3 text-xs sm:text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] active:scale-95 rounded-xl transition-all shadow-sm shadow-[#E5B842]/25 whitespace-nowrap cursor-pointer"
+                  className="px-7 py-3 text-xs sm:text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] active:scale-95 rounded-xl border border-[#E5B842] transition-colors whitespace-nowrap cursor-pointer"
                 >
                   طلب عرض سعر
                 </button>
@@ -59,14 +72,14 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
                 </a>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* 4-Column Grid: Brand, Quick Links, Services, Contact & Newsletter */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-stone-800">
             {/* Col 1: Brand Info (4 cols) */}
             <div className="lg:col-span-4 space-y-4">
               <div className="flex items-center gap-3 text-white">
-                <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl overflow-hidden bg-white/10 p-1 border border-white/20 flex items-center justify-center shadow-md backdrop-blur-xs">
+                <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl overflow-hidden bg-white/10 p-1 border border-white/20 flex items-center justify-center backdrop-blur-xs">
                   <Image
                     src="/logo.png"
                     alt="شعار حصاد"
@@ -124,7 +137,7 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
                 <a href="#about" className="hover:text-[#F3D78A] transition-colors">من نحن</a>
               </li>
               <li>
-                <a href="#crops" className="hover:text-[#F3D78A] transition-colors">منتجاتنا</a>
+                <a href="/products" className="hover:text-[#F3D78A] transition-colors">كافة المحاصيل والمنتجات</a>
               </li>
               <li>
                 <a href="#clients" className="hover:text-[#F3D78A] transition-colors">عملاؤنا</a>
@@ -213,7 +226,7 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   </footer>
 );
 }
