@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Mail, MessageCircle, ArrowLeft, Sparkles } from 'lucide-react';
+import { Mail, MessageCircle, ArrowLeft } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export default function ContactSection() {
@@ -20,14 +20,14 @@ export default function ContactSection() {
           className="text-center max-w-2xl mx-auto mb-16"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E5B842]/10 border border-[#E5B842]/25 text-xs font-bold text-[#A87913] uppercase tracking-wider mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-[#E5B842]" />
+            <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-[#E5B842]" />
             <span>تواصل مباشر مع حصاد</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-stone-900 tracking-tight mb-4">
             قنوات الاتصال والشراكة
           </h2>
           <p className="text-xs sm:text-sm text-stone-500 leading-relaxed text-balance">
-            يسعد فريقنا التجاري واللوجستي بخدمتكم وتوفير عروض الأسعار والاتفاقيات التوريدية على مدار الساعة.
+            يسعد فريقنا التجاري واللوجستي بخدمتكم وتوفير عروض أسعار الأعلاف واتفاقيات التوريد على مدار الساعة.
           </p>
         </motion.div>
 
@@ -35,7 +35,7 @@ export default function ContactSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Card 1: Official Email - Full Gold Background */}
           <motion.a
-            href="mailto:info@hssad-agri.com"
+            href="mailto:info@hassadfodders.com"
             initial={{ opacity: 0, x: 35 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -56,7 +56,7 @@ export default function ContactSection() {
                   البريد الإلكتروني المباشر
                 </span>
                 <span className="text-base sm:text-lg font-black text-[#FFF2B8] group-hover:text-white transition-colors font-mono tracking-tight" dir="ltr">
-                  info@hssad-agri.com
+                  info@hassadfodders.com
                 </span>
               </div>
             </div>
@@ -68,7 +68,7 @@ export default function ContactSection() {
 
           {/* Card 2: WhatsApp - Full WhatsApp Green Background */}
           <motion.a
-            href="https://wa.me/966112345678"
+            href="https://wa.me/971544428196"
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, x: -35 }}
@@ -91,7 +91,7 @@ export default function ContactSection() {
                   الهاتف والواتساب الموحد
                 </span>
                 <span className="text-base sm:text-lg font-black text-[#F3D78A] group-hover:text-[#FFF2B8] transition-colors font-mono tracking-tight" dir="ltr">
-                  +966 11 234 5678
+                  +971 54 442 8196
                 </span>
               </div>
             </div>

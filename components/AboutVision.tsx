@@ -27,7 +27,7 @@ export default function AboutVision() {
           className="text-2xl sm:text-4xl font-extrabold text-stone-900 tracking-tight mb-8 leading-snug"
         >
           نزرع الموثوقية... <br />
-          <span className="text-[#DFB235]">لتعزيز الأمن الغذائي واستدامة الحصاد</span>
+          <span className="text-[#DFB235]">لتوريد أعلاف تدعم استدامة الإنتاج الحيواني</span>
         </motion.h2>
 
         {/* Focused Institutional Prose */}
@@ -39,7 +39,7 @@ export default function AboutVision() {
           className="text-stone-600 text-sm sm:text-base leading-relaxed max-w-3xl mx-auto text-balance"
         >
           <p>
-            نلتزم في شركة <strong className="text-stone-900 font-bold">حصاد (HSSAD)</strong> بأن نكون ركيزة أساسية وموثوقة في دعم منظومة الأمن الغذائي الوطني والإقليمي، عبر إدارة وتأمين سلاسل إمداد زراعية متطورة تضمن تدفق أجود المحاصيل الحقلية الاستراتيجية من المزارع النموذجية إلى كبرى مصانع الأغذية ومطاحن الدقيق ومجمعات الإنتاج الحيواني.
+            نلتزم في شركة <strong className="text-stone-900 font-bold">حصاد</strong> بأن نكون شريكاً موثوقاً لمزارع الإنتاج الحيواني ومصانع الأعلاف، عبر إدارة وتأمين سلاسل إمداد متطورة تضمن توريد وتوفير أجود الأعلاف الخضراء والجافة ومكونات العلف من أفضل المصادر إلى مزارع الألبان والتسمين وإسطبلات الخيول.
           </p>
         </motion.div>
       </div>

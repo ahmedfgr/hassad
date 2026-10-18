@@ -46,7 +46,7 @@ export default function QuoteRequestModal({
       return;
     }
     if (!formData.cropType) {
-      setErrorMsg('يرجى تحديد المحصول المطلوب.');
+      setErrorMsg('يرجى تحديد المنتج المطلوب.');
       return;
     }
 
@@ -89,7 +89,7 @@ export default function QuoteRequestModal({
               />
             </div>
             <div>
-              <h3 className="text-lg font-bold">طلب عرض سعر وتوريد محاصيل | حصاد</h3>
+              <h3 className="text-lg font-bold">طلب عرض سعر وتوريد أعلاف | حصاد</h3>
               <p className="text-xs text-stone-300">
                 فريق المبيعات واللوجستيات يتواصل معك خلال ساعات العمل الرسمية
               </p>
@@ -117,7 +117,7 @@ export default function QuoteRequestModal({
                 تم استلام طلبك بنجاح!
               </h4>
               <p className="text-sm text-stone-600 max-w-md mx-auto leading-relaxed">
-                شكراً لتواصلك مع شركة حصاد (HSSAD). تم إحالة طلب التسعير لممثلنا التجاري وسيقوم بالتواصل معكم قريباً عبر رقم الهاتف {formData.phone}.
+                شكراً لتواصلك مع شركة حصاد. تم إحالة طلب التسعير لممثلنا التجاري وسيقوم بالتواصل معكم قريباً عبر رقم الهاتف {formData.phone}.
               </p>
               <div className="pt-4">
                 <button
@@ -154,13 +154,13 @@ export default function QuoteRequestModal({
 
                 <div>
                   <label className="block text-xs font-bold text-stone-700 mb-1">
-                    اسم الشركة / المطحنة / المصنع
+                    اسم المزرعة / الشركة / المصنع
                   </label>
                   <input
                     type="text"
                     value={formData.companyName}
                     onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                    placeholder="اسم المنشأة التجارية"
+                    placeholder="اسم المزرعة أو المنشأة"
                     className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/20 focus:border-[#C89B3C] transition-colors"
                   />
                 </div>
@@ -169,7 +169,7 @@ export default function QuoteRequestModal({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-stone-700 mb-1">
-                    المحصول المطلوب <span className="text-red-500">*</span>
+                    المنتج المطلوب <span className="text-red-500">*</span>
                   </label>
                   <select
                     required
@@ -177,7 +177,7 @@ export default function QuoteRequestModal({
                     onChange={(e) => setFormData({ ...formData, cropType: e.target.value })}
                     className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/20 focus:border-[#C89B3C] transition-colors"
                   >
-                    <option value="">اختر نوع المحصول...</option>
+                    <option value="">اختر المنتج...</option>
                     {CROPS_DATA.map((c) => (
                       <option key={c.id} value={c.name}>
                         {c.name}
@@ -211,7 +211,7 @@ export default function QuoteRequestModal({
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder="مثال: +966 50 123 4567"
+                    placeholder="مثال: +971 50 123 4567"
                     className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/20 focus:border-[#C89B3C] transition-colors text-left"
                     dir="ltr"
                   />
@@ -240,7 +240,7 @@ export default function QuoteRequestModal({
                   type="text"
                   value={formData.destination}
                   onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
-                  placeholder="مثال: مستودعات الرياض، ميناء الملك عبدالعزيز بالدمام، ميناء جدة الإسلامي..."
+                  placeholder="مثال: مستودعات أبوظبي، ميناء خليفة، ميناء جبل علي..."
                   className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/20 focus:border-[#C89B3C] transition-colors"
                 />
               </div>

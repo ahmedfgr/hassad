@@ -14,15 +14,15 @@ interface HeroProps {
 const HERO_IMAGES = [
   {
     src: '/hero_image.png',
-    alt: 'حقول حصاد الزراعية الذهبية',
+    alt: 'حقول أعلاف حصاد الخضراء',
   },
   {
     src: '/hero_image_2.png',
-    alt: 'سنابل القمح والمحاصيل الناضجة',
+    alt: 'بالات الأعلاف الجافة الجاهزة للتوريد',
   },
   {
     src: '/hero_image_3.png',
-    alt: 'الحصاد الحديث وسلاسل الإمداد الزراعي',
+    alt: 'حصاد الأعلاف وسلاسل الإمداد',
   },
 ];
 
@@ -39,7 +39,7 @@ export default function Hero({ onExploreCrops, onOpenQuote }: HeroProps) {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-[94vh] flex items-center justify-center overflow-hidden bg-stone-950 text-white rounded-b-[2.5rem] sm:rounded-b-[4rem] border-b border-stone-800/80">
+    <section id="hero" className="relative min-h-[94vh] flex items-center justify-center overflow-hidden bg-stone-950 text-white rounded-b-2xl sm:rounded-b-3xl border-b border-stone-800/80">
       {/* 1. Cinematic Slideshow Images with Ken Burns Slow Zoom Effect */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {HERO_IMAGES.map((img, idx) => {
@@ -79,7 +79,7 @@ export default function Hero({ onExploreCrops, onOpenQuote }: HeroProps) {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/45 backdrop-blur-md border border-[#E5B842]/35 text-xs font-semibold text-[#F3D78A] mb-8"
         >
-          <span>شركة حصاد لتوريد المحاصيل الزراعية</span>
+          <span>شركة حصاد لتوريد الأعلاف</span>
         </motion.div>
 
         {/* High-Contrast Cinematic Headline with Radiant Bright Gold Accent */}
@@ -89,9 +89,9 @@ export default function Hero({ onExploreCrops, onOpenQuote }: HeroProps) {
           transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.2] max-w-4xl mx-auto mb-6 text-balance"
         >
-          محاصيل نقية. <br />
+          أعلاف نقية. <br />
           <span className="text-[#F3D78A]">
-            أمن غذائي مستدام.
+            توريد موثوق ومستدام.
           </span>
         </motion.h1>
 
@@ -102,24 +102,24 @@ export default function Hero({ onExploreCrops, onOpenQuote }: HeroProps) {
           transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
           className="text-base sm:text-xl text-stone-100 max-w-2xl mx-auto mb-12 leading-relaxed text-balance font-medium"
         >
-          نوفر أجود الحبوب والبذور والأعلاف للأسواق الإقليمية والدولية وفق أعلى مقاييس النقاء والمواصفات المعتمدة.
+          نوفر ونورّد أجود الأعلاف الخضراء والجافة ومكونات العلف للمزارع ومصانع الأعلاف وفق أعلى مقاييس النقاء والمواصفات المعتمدة.
         </motion.p>
 
-        {/* Minimal High-Contrast CTAs in Radiant Bright Gold */}
+        {/* Minimal High-Contrast CTAs in Radiant Bright Gold - Side by Side */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.6 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-12"
+          className="flex flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md mx-auto mb-12"
         >
           <motion.button
             onClick={onExploreCrops}
             type="button"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            className="w-full sm:w-auto px-8 py-4 text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] rounded-xl border border-[#E5B842] transition-colors flex items-center justify-center gap-2 cursor-pointer"
+            className="flex-1 sm:flex-initial px-5 sm:px-8 py-3.5 text-xs sm:text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] rounded-xl border border-[#E5B842] transition-colors flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
           >
-            <span>استعراض المحاصيل</span>
+            <span>استعراض المنتجات</span>
             <ArrowLeft className="w-4 h-4" />
           </motion.button>
 
@@ -128,7 +128,7 @@ export default function Hero({ onExploreCrops, onOpenQuote }: HeroProps) {
             type="button"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            className="w-full sm:w-auto px-8 py-4 text-sm font-bold text-white bg-black/40 hover:bg-black/60 border border-white/30 rounded-xl transition-all backdrop-blur-md cursor-pointer"
+            className="flex-1 sm:flex-initial px-5 sm:px-8 py-3.5 text-xs sm:text-sm font-bold text-white bg-black/40 hover:bg-black/60 border border-white/30 rounded-xl transition-all backdrop-blur-md cursor-pointer whitespace-nowrap"
           >
             طلب عرض سعر
           </motion.button>

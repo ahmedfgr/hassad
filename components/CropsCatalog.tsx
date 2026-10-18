@@ -20,8 +20,8 @@ export default function CropsCatalog({ onSelectCrop, onRequestQuote }: CropsCata
   const categories = [
     { id: 'all', label: 'الكل' },
     { id: 'fodder', label: 'الأعلاف' },
-    { id: 'grains', label: 'الحبوب' },
-    { id: 'seeds', label: 'البذور والسلع' },
+    { id: 'grains', label: 'حبوب الأعلاف' },
+    { id: 'seeds', label: 'بذور ومكونات' },
   ];
 
   const filteredCrops = useMemo(() => {
@@ -42,7 +42,7 @@ export default function CropsCatalog({ onSelectCrop, onRequestQuote }: CropsCata
           className="text-center max-w-2xl mx-auto mb-10"
         >
           <span className="text-xs font-bold text-[#A87913] uppercase tracking-widest block mb-2">
-            منتجات حصاد
+            أعلاف حصاد
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight">
             أصناف منتقاة بأعلى معايير النقاء والجودة

@@ -18,14 +18,14 @@ export default function ClientsSection() {
   const row1Clients: ClientItem[] = [
     {
       id: 'mills',
-      name: 'شركة المطاحن الوطنية الكبرى',
-      category: 'مطاحن وصوامع حبوب',
+      name: 'شركة الأعلاف الوطنية الكبرى',
+      category: 'مصانع أعلاف وصوامع تخزين',
       icon: <Wheat className="w-9 h-9 text-[#A87913]" />,
     },
     {
       id: 'food-ind',
-      name: 'مجمع الصناعات الغذائية الخليجي',
-      category: 'تصنيع غذائي واستيراد',
+      name: 'مجمع الإنتاج الحيواني الخليجي',
+      category: 'تصنيع علفي واستيراد',
       icon: <Factory className="w-9 h-9 text-[#A87913]" />,
     },
     {
@@ -36,7 +36,7 @@ export default function ClientsSection() {
     },
     {
       id: 'delta-trade',
-      name: 'شركة التجارة الزراعية الدولية',
+      name: 'شركة تجارة الأعلاف الدولية',
       category: 'توريد وتجارة جملة',
       icon: <Landmark className="w-9 h-9 text-[#A87913]" />,
     },
@@ -57,13 +57,13 @@ export default function ClientsSection() {
     },
     {
       id: 'retail-dist',
-      name: 'سلاسل التوزيع والتموين الغذائي',
+      name: 'سلاسل توزيع مستلزمات الإنتاج الحيواني',
       category: 'سلاسل إمداد وتوزيع',
       icon: <Store className="w-9 h-9 text-[#A87913]" />,
     },
     {
       id: 'agri-coop',
-      name: 'الاتحاد التعاوني الزراعي الإقليمي',
+      name: 'الاتحاد التعاوني لمربي الماشية الإقليمي',
       category: 'تكتل مزارع وجمعيات زراعية',
       icon: <Sprout className="w-9 h-9 text-[#A87913]" />,
     },

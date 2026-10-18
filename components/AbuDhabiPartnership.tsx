@@ -30,7 +30,7 @@ export default function AbuDhabiPartnership({ onOpenQuote }: AbuDhabiPartnership
               {!imgFailed ? (
                 <Image
                   src={partnerImageUrl}
-                  alt="شراكة شركة حصاد مع منصة أبوظبي للتجارة الزراعية"
+                  alt="شراكة شركة حصاد مع منصة أبوظبي لتجارة الأعلاف"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   referrerPolicy="no-referrer"
@@ -51,7 +51,7 @@ export default function AbuDhabiPartnership({ onOpenQuote }: AbuDhabiPartnership
                   <span>محور التوزيع الإقليمي • أبوظبي</span>
                 </div>
                 <h4 className="text-base sm:text-lg font-bold text-white">
-                  منصة أبوظبي للتجارة وسلاسل الإمداد الزراعي
+                  منصة أبوظبي للتجارة وسلاسل إمداد الأعلاف
                 </h4>
               </div>
             </div>
@@ -78,7 +78,7 @@ export default function AbuDhabiPartnership({ onOpenQuote }: AbuDhabiPartnership
 
             {/* Condensed Paragraph */}
             <p className="text-xs sm:text-sm text-stone-600 leading-relaxed mb-6 text-balance">
-              ربط رقمي مباشر لتسريع تدفق المحاصيل المعتمدة من شركة حصاد إلى أسواق دولة الإمارات والمنطقة بأعلى معايير الكفاءة والأمان الغذائي.
+              ربط رقمي مباشر لتسريع تدفق الأعلاف المعتمدة من شركة حصاد إلى أسواق دولة الإمارات والمنطقة بأعلى معايير الكفاءة والجودة.
             </p>
 
             {/* Action button in Bright Gold */}

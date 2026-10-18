@@ -56,7 +56,7 @@ export default function Navbar({ onOpenQuoteModal }: NavbarProps) {
           className={`transition-all duration-300 ease-out ${
             scrolled
               ? 'max-w-5xl mx-auto rounded-2xl bg-stone-950/90 backdrop-blur-md border border-white/15 px-4 sm:px-8 py-2.5'
-              : 'w-full bg-gradient-to-b from-black/75 via-black/30 to-transparent border-b border-white/10 px-4 sm:px-8 lg:px-12 py-3.5 sm:py-4'
+              : 'w-full bg-gradient-to-b from-black/75 via-black/30 to-transparent px-4 sm:px-8 lg:px-12 py-3.5 sm:py-4'
           }`}
         >
           <div className="flex items-center justify-between gap-4 sm:gap-6">
@@ -84,8 +84,8 @@ export default function Navbar({ onOpenQuoteModal }: NavbarProps) {
               </div>
               <div className="flex flex-col pl-1">
                 <span className="text-sm sm:text-base font-bold tracking-tight text-white">حصاد</span>
-                <span className="text-[8px] sm:text-[9px] tracking-widest font-semibold text-[#F3D78A] uppercase -mt-0.5 font-mono">
-                  HSSAD AGRI
+                <span className="text-[9px] sm:text-[10px] font-semibold text-[#F3D78A] -mt-0.5">
+                  لتوريد الأعلاف
                 </span>
               </div>
             </motion.a>
@@ -213,8 +213,8 @@ export default function Navbar({ onOpenQuoteModal }: NavbarProps) {
                   </div>
                   <div className="flex flex-col">
                     <span className="text-sm font-bold tracking-tight text-white">حصاد</span>
-                    <span className="text-[8px] tracking-widest font-semibold text-[#F3D78A] uppercase font-mono">
-                      HSSAD AGRI
+                    <span className="text-[10px] font-semibold text-[#F3D78A]">
+                      لتوريد الأعلاف
                     </span>
                   </div>
                 </div>
@@ -264,7 +264,7 @@ export default function Navbar({ onOpenQuoteModal }: NavbarProps) {
                   }`}
                 >
                   <span className="flex items-center gap-2">
-                    <span>كافة المحاصيل والمنتجات</span>
+                    <span>منتجات الأعلاف</span>
                     <span className="text-[10px] px-1.5 py-0.2 rounded-md bg-[#E5B842]/20 text-[#F3D78A] border border-[#E5B842]/30 font-bold">
                       الكتالوج
                     </span>
@@ -295,18 +295,18 @@ export default function Navbar({ onOpenQuoteModal }: NavbarProps) {
                   تواصل مباشر وسريع
                 </span>
                 <a
-                  href="tel:+966112345678"
+                  href="tel:+971544428196"
                   className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-stone-200 hover:text-white transition-colors"
                 >
                   <Phone className="w-4 h-4 text-[#E5B842] shrink-0" />
-                  <span dir="ltr" className="font-mono">+966 11 234 5678</span>
+                  <span dir="ltr" className="font-mono">+971 54 442 8196</span>
                 </a>
                 <a
-                  href="mailto:info@hssad-agri.com"
+                  href="mailto:info@hassadfodders.com"
                   className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-stone-200 hover:text-white transition-colors"
                 >
                   <Mail className="w-4 h-4 text-[#E5B842] shrink-0" />
-                  <span dir="ltr" className="font-mono">info@hssad-agri.com</span>
+                  <span dir="ltr" className="font-mono">info@hassadfodders.com</span>
                 </a>
               </div>
             </div>

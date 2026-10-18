@@ -52,7 +52,7 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
                   ابدأ شراكتك مع حصاد اليوم
                 </h3>
                 <p className="text-xs sm:text-sm text-stone-600 leading-relaxed text-balance">
-                  تواصل معنا للحصول على عروض أسعار تنافسية وجداول توريد مخصصة تلبي احتياجات منشأتك ومشاريعك التجارية.
+                  تواصل معنا للحصول على عروض أسعار تنافسية وجداول توريد أعلاف مخصصة تلبي احتياجات مزرعتك أو مصنعك.
                 </p>
               </div>
 
@@ -74,7 +74,7 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
             </div>
           </motion.div>
 
-          {/* 4-Column Grid: Brand, Quick Links, Services, Contact & Newsletter */}
+          {/* Grid: Brand, Quick Links, Contact & Newsletter */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-stone-800">
             {/* Col 1: Brand Info (4 cols) */}
             <div className="lg:col-span-4 space-y-4">
@@ -91,37 +91,37 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-xl font-bold tracking-tight text-white">حصاد</span>
-                  <span className="text-[10px] tracking-widest font-semibold text-[#F3D78A] uppercase font-mono">
-                    HSSAD AGRI
+                  <span className="text-[11px] font-semibold text-[#F3D78A]">
+                    لتوريد الأعلاف
                   </span>
                 </div>
               </div>
 
             <p className="text-xs sm:text-sm text-stone-400 leading-relaxed text-balance">
-              نحن نؤمن بأن الزراعة أساس لمستقبل أفضل. نعمل في شركة حصاد على توفير محاصيل زراعية نقية وعالية الجودة لدعم منظومة الأمن الغذائي وبناء شراكات تجارية موثوقة حول العالم.
+              نعمل في شركة حصاد على توريد وتوفير أجود الأعلاف الخضراء والجافة ومكونات العلف للمزارع ومصانع الأعلاف، وفق مواصفات جودة معتمدة وشراكات تجارية موثوقة.
             </p>
 
             <div className="flex items-center gap-3 pt-2">
               <a
                 href="#"
                 aria-label="منصة إكس"
-                className="w-9 h-9 rounded-lg bg-stone-800 hover:bg-[#E5B842] hover:text-stone-950 text-stone-400 transition-colors flex items-center justify-center text-xs font-bold"
+                className="px-3 h-9 rounded-lg bg-stone-800 hover:bg-[#E5B842] hover:text-stone-950 text-stone-400 transition-colors flex items-center justify-center text-[11px] font-bold"
               >
-                X
+                إكس
               </a>
               <a
                 href="#"
                 aria-label="لينكد إن"
-                className="w-9 h-9 rounded-lg bg-stone-800 hover:bg-[#E5B842] hover:text-stone-950 text-stone-400 transition-colors flex items-center justify-center text-xs font-bold"
+                className="px-3 h-9 rounded-lg bg-stone-800 hover:bg-[#E5B842] hover:text-stone-950 text-stone-400 transition-colors flex items-center justify-center text-[11px] font-bold"
               >
-                in
+                لينكد
               </a>
               <a
                 href="#"
                 aria-label="إنستغرام"
-                className="w-9 h-9 rounded-lg bg-stone-800 hover:bg-[#E5B842] hover:text-stone-950 text-stone-400 transition-colors flex items-center justify-center text-xs font-bold"
+                className="px-3 h-9 rounded-lg bg-stone-800 hover:bg-[#E5B842] hover:text-stone-950 text-stone-400 transition-colors flex items-center justify-center text-[11px] font-bold"
               >
-                IG
+                إنستغرام
               </a>
             </div>
           </div>
@@ -137,7 +137,7 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
                 <a href="#about" className="hover:text-[#F3D78A] transition-colors">من نحن</a>
               </li>
               <li>
-                <a href="/products" className="hover:text-[#F3D78A] transition-colors">كافة المحاصيل والمنتجات</a>
+                <a href="/products" className="hover:text-[#F3D78A] transition-colors">منتجات الأعلاف</a>
               </li>
               <li>
                 <a href="#clients" className="hover:text-[#F3D78A] transition-colors">عملاؤنا</a>
@@ -148,40 +148,32 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
             </ul>
           </div>
 
-          {/* Col 3: Services (3 cols) */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-sm font-bold text-white tracking-wider">خدماتنا التوريدية</h4>
-            <ul className="space-y-2 text-xs sm:text-sm text-stone-400">
-              <li>توريد المحاصيل الاستراتيجية</li>
-              <li>إدارة وتأمين سلاسل الإمداد</li>
-              <li>الفحص المخبري وضبط الجودة</li>
-              <li>الاستشارات الزراعية الحقلية</li>
-              <li>حلول التخزين الصومعي والشحن المفرغ</li>
-            </ul>
-          </div>
-
           {/* Col 4: Contact & Newsletter (3 cols) */}
-          <div className="lg:col-span-3 space-y-4">
+          <div className="lg:col-span-6 space-y-4">
             <h4 className="text-sm font-bold text-white tracking-wider">تواصل معنا</h4>
             <div className="space-y-2.5 text-xs sm:text-sm text-stone-400">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-[#E5B842] shrink-0" />
-                <span>الرياض، المملكة العربية السعودية</span>
+                <span>الإمارات العربية المتحدة</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#E5B842] shrink-0" />
-                <span dir="ltr">info@hssad-agri.com</span>
+                <a href="mailto:info@hassadfodders.com" className="hover:text-white transition-colors">
+                  <span dir="ltr">info@hassadfodders.com</span>
+                </a>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#E5B842] shrink-0" />
-                <span dir="ltr">+966 11 234 5678</span>
+                <a href="tel:+971544428196" className="hover:text-white transition-colors">
+                  <span dir="ltr">+971 54 442 8196</span>
+                </a>
               </div>
             </div>
 
             {/* Newsletter Subscription */}
             <div className="pt-2">
               <span className="text-xs font-semibold text-stone-300 block mb-2">
-                النشرة الدورية لأسواق الحبوب
+                النشرة الدورية لأسواق الأعلاف
               </span>
               {subscribed ? (
                 <div className="p-2.5 bg-emerald-950/80 border border-emerald-600/50 rounded-xl text-emerald-300 text-xs flex items-center gap-2">
@@ -215,7 +207,7 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
         {/* Sub-Footer Copyright & Legal */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
           <div>
-            © {new Date().getFullYear()} شركة حصاد الزراعية (HSSAD). جميع الحقوق محفوظة.
+            © {new Date().getFullYear()} شركة حصاد لتوريد الأعلاف. جميع الحقوق محفوظة.
           </div>
           <div className="flex items-center gap-6">
             <a href="#" className="hover:text-stone-300 transition-colors">سياسة الخصوصية</a>
