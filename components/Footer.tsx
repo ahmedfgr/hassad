@@ -35,23 +35,25 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#E5B842]/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-6xl mx-auto">
-          {/* Pre-Footer Action Box: Light theme matching Clients section with Wheat Gold CTA */}
+          {/* Pre-Footer Partnership CTA */}
           <motion.div
             initial={{ opacity: 0, y: 25, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.7 }}
-            className="rounded-3xl bg-white border border-stone-200/90 p-8 sm:p-12 mb-16 text-stone-900"
+            className="relative mb-16 overflow-hidden rounded-3xl border border-[#F3D78A]/35 bg-gradient-to-br from-[#76520D] via-[#8C6411] to-[#967016] p-8 text-white shadow-lg shadow-[#8C6411]/15 sm:p-12"
           >
-            <div className="flex flex-col items-center justify-center gap-6 text-center max-w-2xl mx-auto">
+            <div aria-hidden="true" className="pointer-events-none absolute -left-16 -top-24 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
+            <div aria-hidden="true" className="pointer-events-none absolute -bottom-28 -right-10 h-64 w-64 rounded-full bg-[#F3D78A]/10 blur-3xl" />
+            <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center justify-center gap-6 text-center">
               <div>
-                <span className="text-xs font-bold text-[#A87913] uppercase tracking-widest block mb-2">
+                <span className="mb-2 block text-xs font-bold uppercase tracking-widest text-[#F3D78A]">
                   انضم لشركائنا
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-stone-900 mb-2.5">
+                <h3 className="mb-2.5 text-2xl font-extrabold text-white sm:text-3xl">
                   ابدأ شراكتك مع حصاد اليوم
                 </h3>
-                <p className="text-xs sm:text-sm text-stone-600 leading-relaxed text-balance">
+                <p className="text-xs leading-relaxed text-amber-50/90 text-balance sm:text-sm">
                   تواصل معنا للحصول على عروض أسعار تنافسية وجداول توريد أعلاف مخصصة تلبي احتياجات مزرعتك أو مصنعك.
                 </p>
               </div>
@@ -60,13 +62,13 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
                 <button
                   onClick={onOpenQuoteModal}
                   type="button"
-                  className="px-7 py-3 text-xs sm:text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] active:scale-95 rounded-xl border border-[#E5B842] transition-colors whitespace-nowrap cursor-pointer"
+                  className="cursor-pointer whitespace-nowrap rounded-xl border border-white bg-white px-7 py-3 text-xs font-bold text-[#76520D] transition-colors hover:bg-amber-50 active:scale-95 sm:text-sm"
                 >
                   طلب عرض سعر
                 </button>
                 <a
                   href="#contact"
-                  className="px-6 py-3 text-xs sm:text-sm font-bold text-stone-800 bg-stone-50 hover:bg-stone-100 active:scale-95 border border-stone-200 rounded-xl transition-all whitespace-nowrap"
+                  className="whitespace-nowrap rounded-xl border border-white/50 bg-[#76520D]/30 px-6 py-3 text-xs font-bold text-white transition-colors hover:bg-[#76520D]/45 active:scale-95 sm:text-sm"
                 >
                   تواصل معنا
                 </a>
@@ -134,13 +136,10 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
                 <a href="#hero" className="hover:text-[#F3D78A] transition-colors">الرئيسية</a>
               </li>
               <li>
-                <a href="#about" className="hover:text-[#F3D78A] transition-colors">من نحن</a>
+                <a href="#about-us" className="hover:text-[#F3D78A] transition-colors">من نحن</a>
               </li>
               <li>
                 <a href="/products" className="hover:text-[#F3D78A] transition-colors">منتجات الأعلاف</a>
-              </li>
-              <li>
-                <a href="#clients" className="hover:text-[#F3D78A] transition-colors">عملاؤنا</a>
               </li>
               <li>
                 <a href="#contact" className="hover:text-[#F3D78A] transition-colors">اتصل بنا</a>

@@ -5,16 +5,13 @@ import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import AboutVision from '@/components/AboutVision';
-import AbuDhabiPartnership from '@/components/AbuDhabiPartnership';
+import AboutUs from '@/components/AboutUs';
+import ImportMarkets from '@/components/ImportMarkets';
 import CropsCatalog from '@/components/CropsCatalog';
 import Footer from '@/components/Footer';
 import { CropItem } from '@/lib/cropsData';
 
 // Progressive dynamic component loading for optimal browser caching & code splitting
-const ClientsSection = dynamic(() => import('@/components/ClientsSection'), {
-  loading: () => <div className="py-20 bg-stone-50/40 min-h-[280px]" />,
-});
-
 const ContactSection = dynamic(() => import('@/components/ContactSection'), {
   loading: () => <div className="py-20 min-h-[240px]" />,
 });
@@ -67,17 +64,15 @@ export default function HomePage() {
         {/* Centered Institutional Vision (Prose without cards) - Immediately below Hero */}
         <AboutVision />
 
-        {/* Secondary Hero: Strategic Partnership with Abu Dhabi Platform */}
-        <AbuDhabiPartnership onOpenQuote={() => handleOpenQuote()} />
+        <AboutUs />
+
+        <ImportMarkets />
 
         {/* Crops Catalog with Strictly 4 Curated Crops */}
         <CropsCatalog
           onSelectCrop={(crop) => setSelectedCrop(crop)}
           onRequestQuote={(cropName) => handleOpenQuote(cropName)}
         />
-
-        {/* Progressive Dynamic Clients Section */}
-        <ClientsSection />
 
         {/* Progressive Dynamic Contact Section */}
         <ContactSection />

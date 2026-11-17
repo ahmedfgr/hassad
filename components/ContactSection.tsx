@@ -1,105 +1,267 @@
 'use client';
 
 import React from 'react';
-import { Mail, MessageCircle, ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Mail, MessageCircle } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="py-24 sm:py-32 bg-[#FAFAFA] border-b border-stone-100 relative overflow-hidden">
-      {/* Background Ambience Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-[#E5B842]/10 via-[#F3D78A]/10 to-transparent rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Centered Section Header */}
+    <section
+      id="contact"
+      className="relative overflow-hidden py-16 sm:py-24"
+    >
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mx-auto mb-10 max-w-2xl text-center sm:mb-14"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E5B842]/10 border border-[#E5B842]/25 text-xs font-bold text-[#A87913] uppercase tracking-wider mb-3">
-            <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-[#E5B842]" />
-            <span>تواصل مباشر مع حصاد</span>
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#D4AF37]/5 px-4 py-2 text-sm font-medium text-[#A27B19]">
+            <span className="h-2 w-2 rounded-full bg-[#D4AF37]" />
+            تواصل مباشر مع حصاد
           </div>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-stone-900 tracking-tight mb-4">
+
+          <h2 className="mb-3 text-2xl font-semibold text-slate-900 sm:text-4xl">
             قنوات الاتصال والشراكة
           </h2>
-          <p className="text-xs sm:text-sm text-stone-500 leading-relaxed text-balance">
-            يسعد فريقنا التجاري واللوجستي بخدمتكم وتوفير عروض أسعار الأعلاف واتفاقيات التوريد على مدار الساعة.
+
+          <p className="text-sm leading-7 text-slate-600 sm:text-base">
+            يسعد فريقنا التجاري واللوجستي بخدمتكم وتوفير عروض أسعار الأعلاف
+            واتفاقيات التوريد على مدار الساعة.
           </p>
         </motion.div>
 
-        {/* 2 Full-Color Modern Cards: Gold for Email & WhatsApp Green for WhatsApp */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {/* Card 1: Official Email - Full Gold Background */}
-          <motion.a
-            href="mailto:info@hassadfodders.com"
-            initial={{ opacity: 0, x: 35 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ y: -5, scale: 1.01 }}
-            className="group relative flex items-center justify-between p-7 sm:p-8 bg-[#C2921D] rounded-3xl border border-[#B08115] hover:border-white/40 transition-colors duration-300 overflow-hidden"
-          >
-            {/* Subtle Lighting Sheen */}
-            <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+        {/* Main Card */}
+        <div
+          className="
+          relative
+          overflow-hidden
+          rounded-[32px]
+          bg-white
+          shadow-[0_4px_24px_rgba(15,23,42,0.04),0_24px_60px_rgba(15,23,42,0.06)]
+          "
+        >
+          {/* Top Accent */}
+          <div
+            className="
+            absolute
+            inset-x-0
+            top-0
+            h-[2px]
+            bg-gradient-to-r
+            from-transparent
+            via-[#D4AF37]
+            to-transparent
+          "
+          />
 
-            <div className="flex items-center gap-5 relative z-10">
-              {/* All-White Icon Container */}
-              <div className="w-14 h-14 rounded-2xl bg-white/20 border border-white/30 flex items-center justify-center text-white shrink-0 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500">
-                <Mail className="w-6 h-6 stroke-[2.2] text-white" />
+          <div className="grid lg:grid-cols-[360px_1fr]">
+            {/* Left Block */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="
+                relative
+                overflow-hidden
+                bg-[#111612]
+              "
+            >
+              {/* Glow */}
+              <div className="absolute -left-20 -top-20 h-60 w-60 rounded-full bg-[#D4AF37]/10 blur-3xl" />
+
+              <div className="absolute bottom-0 right-0 h-52 w-52 rounded-full bg-[#D4AF37]/10 blur-3xl" />
+
+              <div className="relative flex min-h-[260px] items-center justify-center p-6 sm:min-h-[320px] lg:min-h-[420px]">
+                <div className="text-center">
+                  {/* Circle */}
+                  <div
+                    className="
+                    relative
+                    mx-auto
+                    mb-6
+                    flex
+                    h-32
+                    w-32
+                    items-center
+                    justify-center
+                    rounded-full
+                    border-[4px]
+                    border-[#D4AF37]
+                    bg-[#111612]
+                    sm:h-40
+                    sm:w-40
+                    lg:h-44
+                    lg:w-44
+                  "
+                  >
+                    <div className="absolute inset-[-8px] rounded-full border border-[#D4AF37]/30" />
+
+                    <span className="text-xl font-medium text-[#F3D78A] sm:text-2xl">
+                      تواصل
+                    </span>
+                  </div>
+
+                  <h3 className="text-2xl font-semibold text-white sm:text-3xl lg:text-4xl">
+                    تواصل معنا
+                  </h3>
+
+                  <p className="mt-2 text-base font-medium text-[#EACD76] sm:text-lg">
+                    Contact Us
+                  </p>
+
+                  <div className="mt-5 flex items-center justify-center gap-3">
+                    <span className="h-px w-10 bg-[#D4AF37]" />
+
+                    <span className="text-[11px] tracking-[0.25em] text-[#F3D78A]">
+                      HASSAD
+                    </span>
+
+                    <span className="h-px w-10 bg-[#D4AF37]" />
+                  </div>
+                </div>
               </div>
-              <div>
-                <span className="text-xs font-bold text-white block mb-1">
-                  البريد الإلكتروني المباشر
-                </span>
-                <span className="text-base sm:text-lg font-black text-[#FFF2B8] group-hover:text-white transition-colors font-mono tracking-tight" dir="ltr">
-                  info@hassadfodders.com
-                </span>
+            </motion.div>
+
+            {/* Right Content */}
+            <div className="p-5 sm:p-8 lg:p-12">
+              <div className="space-y-5">
+                {/* Email */}
+                <motion.a
+                  href="mailto:info@hassadfodders.com"
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -4 }}
+                  className="
+                    group
+                    flex
+                    items-center
+                    justify-between
+                    rounded-[24px]
+                    bg-white
+                    p-5
+                    shadow-[0_2px_12px_rgba(15,23,42,0.04)]
+                    transition-all
+                    duration-300
+                    hover:-translate-y-1
+                    hover:shadow-[0_15px_40px_rgba(15,23,42,0.08)]
+                  "
+                >
+                  <div className="flex flex-1 flex-col items-center gap-4 sm:flex-row">
+                    <div
+                      className="
+                        flex
+                        h-16
+                        w-16
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-[#FFFDF6]
+                        text-[#B8860B]
+                        shadow-[0_8px_20px_rgba(212,175,55,0.15)]
+                        sm:h-20
+                        sm:w-20
+                      "
+                    >
+                      <Mail size={30} />
+                    </div>
+
+                    <div
+                      dir="rtl"
+                      className="w-full text-center sm:text-right"
+                    >
+                      <p className="text-lg font-medium text-slate-600 sm:text-xl">
+                        البريد الإلكتروني
+                      </p>
+
+                      <p
+                        dir="ltr"
+                        className="mt-2 break-all text-sm font-semibold text-slate-900 sm:text-base lg:text-xl"
+                      >
+                        info@hassadfodders.com
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="hidden h-12 w-12 items-center justify-center rounded-full bg-[#FFF5D9] text-[#B8860B] transition-all duration-300 group-hover:-translate-x-1 md:flex">
+                    <ArrowLeft size={18} />
+                  </div>
+                </motion.a>
+
+                {/* WhatsApp */}
+                <motion.a
+                  href="https://wa.me/971544428196"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -4 }}
+                  className="
+                    group
+                    flex
+                    items-center
+                    justify-between
+                    rounded-[24px]
+                    bg-white
+                    p-5
+                    shadow-[0_2px_12px_rgba(15,23,42,0.04)]
+                    transition-all
+                    duration-300
+                    hover:-translate-y-1
+                    hover:shadow-[0_15px_40px_rgba(15,23,42,0.08)]
+                  "
+                >
+                  <div className="flex flex-1 flex-col items-center gap-4 sm:flex-row">
+                    <div
+                      className="
+                        flex
+                        h-16
+                        w-16
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-[#FFFDF6]
+                        text-[#B8860B]
+                        shadow-[0_8px_20px_rgba(212,175,55,0.15)]
+                        sm:h-20
+                        sm:w-20
+                      "
+                    >
+                      <MessageCircle size={30} />
+                    </div>
+
+                    <div
+                      dir="rtl"
+                      className="w-full text-center sm:text-right"
+                    >
+                      <p className="text-lg font-medium text-slate-600 sm:text-xl">
+                        الهاتف والواتساب الموحد
+                      </p>
+
+                      <p
+                        dir="ltr"
+                        className="mt-2 text-sm font-semibold text-slate-900 sm:text-base lg:text-xl"
+                      >
+                        +971 54 442 8196
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="hidden h-12 w-12 items-center justify-center rounded-full bg-[#FFF5D9] text-[#B8860B] transition-all duration-300 group-hover:-translate-x-1 md:flex">
+                    <ArrowLeft size={18} />
+                  </div>
+                </motion.a>
               </div>
             </div>
-
-            <div className="w-11 h-11 rounded-2xl bg-white/20 border border-white/30 flex items-center justify-center text-white group-hover:bg-white group-hover:text-stone-950 transition-colors duration-300 shrink-0 relative z-10">
-              <ArrowLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" />
-            </div>
-          </motion.a>
-
-          {/* Card 2: WhatsApp - Full WhatsApp Green Background */}
-          <motion.a
-            href="https://wa.me/971544428196"
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, x: -35 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ y: -5, scale: 1.01 }}
-            className="group relative flex items-center justify-between p-7 sm:p-8 bg-[#18663E] rounded-3xl border border-[#145634] hover:border-white/40 transition-colors duration-300 overflow-hidden"
-          >
-            {/* Subtle Lighting Sheen */}
-            <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-            <div className="flex items-center gap-5 relative z-10">
-              {/* All-White WhatsApp Icon Container */}
-              <div className="w-14 h-14 rounded-2xl bg-white/20 border border-white/30 flex items-center justify-center text-white shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
-                <MessageCircle className="w-6 h-6 stroke-[2.2] text-white" />
-              </div>
-              <div>
-                <span className="text-xs font-bold text-white block mb-1">
-                  الهاتف والواتساب الموحد
-                </span>
-                <span className="text-base sm:text-lg font-black text-[#F3D78A] group-hover:text-[#FFF2B8] transition-colors font-mono tracking-tight" dir="ltr">
-                  +971 54 442 8196
-                </span>
-              </div>
-            </div>
-
-            <div className="w-11 h-11 rounded-2xl bg-white/20 border border-white/30 flex items-center justify-center text-white group-hover:bg-white group-hover:text-stone-950 transition-colors duration-300 shrink-0 relative z-10">
-              <ArrowLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" />
-            </div>
-          </motion.a>
+          </div>
         </div>
       </div>
     </section>

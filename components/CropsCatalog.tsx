@@ -55,17 +55,22 @@ export default function CropsCatalog({ onSelectCrop, onRequestQuote }: CropsCata
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="flex items-center justify-center mb-14"
+          className="mb-10 w-full sm:mb-14"
         >
-          <div className="flex items-center gap-1 p-1 bg-stone-100/90 rounded-xl border border-stone-200/60">
+          <div
+            role="group"
+            aria-label="تصفية الأعلاف حسب الفئة"
+            className="mx-auto flex w-full max-w-full gap-2 overflow-x-auto rounded-2xl border border-stone-200/60 bg-stone-100/90 p-2 sm:w-fit sm:gap-1 sm:rounded-xl sm:p-1"
+          >
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id as CategoryType)}
                 type="button"
-                className={`px-4 sm:px-5 py-1.5 text-xs sm:text-sm font-bold rounded-lg transition-colors cursor-pointer ${
+                aria-pressed={activeCategory === cat.id}
+                className={`min-h-11 shrink-0 whitespace-nowrap rounded-lg px-3 py-2 text-xs font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A87913] sm:w-auto sm:px-5 sm:text-sm ${
                   activeCategory === cat.id
-                    ? 'bg-[#E5B842] text-stone-950 border border-[#E5B842]'
+                    ? 'border border-[#E5B842] bg-[#E5B842] text-stone-950'
                     : 'text-stone-600 hover:text-stone-950'
                 }`}
               >
