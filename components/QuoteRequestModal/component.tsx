@@ -3,13 +3,23 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { X, CheckCircle2, Send } from 'lucide-react';
-import { CROPS_DATA } from '@/lib/cropsData';
-import { THEME_COLORS } from '@/lib/theme';
+import { useLanguage } from '@/components/LanguageProvider/component';
+import {
+  QUOTE_CROP_OPTIONS,
+  QUOTE_CROP_OPTIONS_I18N,
+  QUOTE_MODAL_COPY_I18N,
+  QUOTE_VALIDATION_RULES_I18N,
+  createQuoteFormData,
+} from './data';
+import type { QuoteRequestModalProps } from './types';
 
-interface QuoteRequestModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  initialCropName?: string;
+function resolveCropOptionId(initialCropName: string) {
+  return QUOTE_CROP_OPTIONS.find((option, index) => (
+    option.id === initialCropName
+    || option.value === initialCropName
+    || option.label === initialCropName
+    || QUOTE_CROP_OPTIONS_I18N.en[index]?.label === initialCropName
+  ))?.id ?? '';
 }
 
 export default function QuoteRequestModal({
@@ -17,19 +27,15 @@ export default function QuoteRequestModal({
   onClose,
   initialCropName = '',
 }: QuoteRequestModalProps) {
-  const [formData, setFormData] = useState({
-    clientName: '',
-    companyName: '',
-    cropType: initialCropName,
-    quantityTons: '',
-    destination: '',
-    phone: '',
-    email: '',
-    notes: '',
-  });
-
+  const [formData, setFormData] = useState(
+    () => createQuoteFormData(resolveCropOptionId(initialCropName)),
+  );
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const { locale, direction } = useLanguage();
+  const copy = QUOTE_MODAL_COPY_I18N[locale];
+  const cropOptions = QUOTE_CROP_OPTIONS_I18N[locale];
+  const validationRules = QUOTE_VALIDATION_RULES_I18N[locale];
 
   if (!isOpen) return null;
 
@@ -37,16 +43,13 @@ export default function QuoteRequestModal({
     e.preventDefault();
     setErrorMsg('');
 
-    if (!formData.clientName.trim()) {
-      setErrorMsg('يرجى إدخال اسم المسؤول أو جهة الاتصال.');
-      return;
-    }
-    if (!formData.phone.trim()) {
-      setErrorMsg('يرجى إدخال رقم الهاتف أو الواتساب للتواصل.');
-      return;
-    }
-    if (!formData.cropType) {
-      setErrorMsg('يرجى تحديد المنتج المطلوب.');
+    const failedRule = validationRules.find((rule) => {
+      const value = formData[rule.field];
+      return rule.requirement === 'trimmed' ? !value.trim() : !value;
+    });
+
+    if (failedRule) {
+      setErrorMsg(failedRule.message);
       return;
     }
 
@@ -55,16 +58,7 @@ export default function QuoteRequestModal({
 
   const handleReset = () => {
     setSubmitted(false);
-    setFormData({
-      clientName: '',
-      companyName: '',
-      cropType: '',
-      quantityTons: '',
-      destination: '',
-      phone: '',
-      email: '',
-      notes: '',
-    });
+    setFormData(createQuoteFormData());
     onClose();
   };
 
@@ -72,16 +66,16 @@ export default function QuoteRequestModal({
     <div
       role="dialog"
       aria-modal="true"
+      dir={direction}
       className="fixed inset-0 z-50 overflow-y-auto bg-stone-900/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6"
     >
       <div className="relative w-full max-w-xl bg-white rounded-3xl border border-stone-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-        {/* Header */}
         <div className="p-6 bg-stone-900 text-white relative flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-white/10 p-1 border border-white/20 flex items-center justify-center">
               <Image
                 src="/logo.png"
-                alt="شعار حصاد"
+                alt={copy.logoAlt}
                 width={40}
                 height={40}
                 className="w-full h-full object-contain"
@@ -89,10 +83,8 @@ export default function QuoteRequestModal({
               />
             </div>
             <div>
-              <h3 className="text-lg font-bold">طلب عرض سعر وتوريد أعلاف | حصاد</h3>
-              <p className="text-xs text-stone-300">
-                فريق المبيعات واللوجستيات يتواصل معك خلال ساعات العمل الرسمية
-              </p>
+              <h3 className="text-lg font-bold">{copy.title}</h3>
+              <p className="text-xs text-stone-300">{copy.subtitle}</p>
             </div>
           </div>
 
@@ -100,13 +92,12 @@ export default function QuoteRequestModal({
             onClick={onClose}
             type="button"
             className="p-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-400 hover:text-white transition-colors cursor-pointer"
-            aria-label="إغلاق النافذة"
+            aria-label={copy.closeAriaLabel}
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Form or Confirmation */}
         <div className="p-6 sm:p-8 max-h-[80vh] overflow-y-auto">
           {submitted ? (
             <div className="text-center py-8 space-y-4">
@@ -114,10 +105,12 @@ export default function QuoteRequestModal({
                 <CheckCircle2 className="w-10 h-10" />
               </div>
               <h4 className="text-xl font-bold text-stone-900">
-                تم استلام طلبك بنجاح!
+                {copy.successTitle}
               </h4>
               <p className="text-sm text-stone-600 max-w-md mx-auto leading-relaxed">
-                شكراً لتواصلك مع شركة حصاد. تم إحالة طلب التسعير لممثلنا التجاري وسيقوم بالتواصل معكم قريباً عبر رقم الهاتف {formData.phone}.
+                {copy.successTextBeforePhone}
+                <span dir="ltr">{formData.phone}</span>
+                {copy.successTextAfterPhone}
               </p>
               <div className="pt-4">
                 <button
@@ -125,7 +118,7 @@ export default function QuoteRequestModal({
                   type="button"
                   className="px-6 py-2.5 text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] rounded-xl border border-[#E5B842] transition-colors cursor-pointer"
                 >
-                  حسناً، تم
+                  {copy.successButton}
                 </button>
               </div>
             </div>
@@ -140,27 +133,27 @@ export default function QuoteRequestModal({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-stone-700 mb-1">
-                    اسم المسؤول / العميل <span className="text-red-500">*</span>
+                    {copy.clientNameLabel} <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
                     required
                     value={formData.clientName}
                     onChange={(e) => setFormData({ ...formData, clientName: e.target.value })}
-                    placeholder="الاسم الكريم"
+                    placeholder={copy.clientNamePlaceholder}
                     className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/20 focus:border-[#C89B3C] transition-colors"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold text-stone-700 mb-1">
-                    اسم المزرعة / الشركة / المصنع
+                    {copy.companyNameLabel}
                   </label>
                   <input
                     type="text"
                     value={formData.companyName}
                     onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                    placeholder="اسم المزرعة أو المنشأة"
+                    placeholder={copy.companyNamePlaceholder}
                     className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/20 focus:border-[#C89B3C] transition-colors"
                   />
                 </div>
@@ -169,7 +162,7 @@ export default function QuoteRequestModal({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-stone-700 mb-1">
-                    المنتج المطلوب <span className="text-red-500">*</span>
+                    {copy.cropTypeLabel} <span className="text-red-500">*</span>
                   </label>
                   <select
                     required
@@ -177,25 +170,24 @@ export default function QuoteRequestModal({
                     onChange={(e) => setFormData({ ...formData, cropType: e.target.value })}
                     className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/20 focus:border-[#C89B3C] transition-colors"
                   >
-                    <option value="">اختر المنتج...</option>
-                    {CROPS_DATA.map((c) => (
-                      <option key={c.id} value={c.name}>
-                        {c.name}
+                    <option value="">{copy.cropPlaceholder}</option>
+                    {cropOptions.map((option) => (
+                      <option key={option.id} value={option.id}>
+                        {option.label}
                       </option>
                     ))}
-                    <option value="أخرى / شحنات مخصصة">أخرى / شحنات مخصصة</option>
                   </select>
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold text-stone-700 mb-1">
-                    الكمية التقديرية (بالطن)
+                    {copy.quantityLabel}
                   </label>
                   <input
                     type="text"
                     value={formData.quantityTons}
                     onChange={(e) => setFormData({ ...formData, quantityTons: e.target.value })}
-                    placeholder="مثال: 50 طن أو صب 1000 طن"
+                    placeholder={copy.quantityPlaceholder}
                     className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/20 focus:border-[#C89B3C] transition-colors"
                   />
                 </div>
@@ -204,14 +196,14 @@ export default function QuoteRequestModal({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-stone-700 mb-1">
-                    رقم الهاتف أو الواتساب <span className="text-red-500">*</span>
+                    {copy.phoneLabel} <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="tel"
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder="مثال: +971 50 123 4567"
+                    placeholder={copy.phonePlaceholder}
                     className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/20 focus:border-[#C89B3C] transition-colors text-left"
                     dir="ltr"
                   />
@@ -219,13 +211,13 @@ export default function QuoteRequestModal({
 
                 <div>
                   <label className="block text-xs font-bold text-stone-700 mb-1">
-                    البريد الإلكتروني
+                    {copy.emailLabel}
                   </label>
                   <input
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="office@company.com"
+                    placeholder={copy.emailPlaceholder}
                     className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/20 focus:border-[#C89B3C] transition-colors text-left"
                     dir="ltr"
                   />
@@ -234,26 +226,26 @@ export default function QuoteRequestModal({
 
               <div>
                 <label className="block text-xs font-bold text-stone-700 mb-1">
-                  مدينة أو ميناء الوصول / الوجهة
+                  {copy.destinationLabel}
                 </label>
                 <input
                   type="text"
                   value={formData.destination}
                   onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
-                  placeholder="مثال: مستودعات أبوظبي، ميناء خليفة، ميناء جبل علي..."
+                  placeholder={copy.destinationPlaceholder}
                   className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/20 focus:border-[#C89B3C] transition-colors"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-bold text-stone-700 mb-1">
-                  ملاحظات أو مواصفات خاصة
+                  {copy.notesLabel}
                 </label>
                 <textarea
                   rows={2}
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  placeholder="أي اشتراطات خاصة بنسبة الرطوبة أو جدول مواعيد التوريد..."
+                  placeholder={copy.notesPlaceholder}
                   className="w-full px-3.5 py-2 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#E5B842]/20 focus:border-[#E5B842] transition-colors"
                 />
               </div>
@@ -264,7 +256,7 @@ export default function QuoteRequestModal({
                   className="w-full py-3 text-sm font-bold text-stone-950 bg-[#E5B842] hover:bg-[#F0C446] active:scale-[0.99] rounded-xl border border-[#E5B842] transition-colors flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
-                  <span>إرسال طلب عرض السعر</span>
+                  <span>{copy.submit}</span>
                 </button>
               </div>
             </form>

@@ -1,21 +1,22 @@
 'use client';
 
-import React from 'react';
 import Image from 'next/image';
 import { motion } from 'motion/react';
+import { useLanguage } from '../LanguageProvider/component';
+import {
+  IMPORT_MARKETS_CONTENT_I18N,
+  IMPORT_MARKETS_I18N,
+} from './data';
+import type { ImportMarketsProps } from './types';
 
-const IMPORT_MARKETS = [
-  { name: 'الولايات المتحدة', flag: '/flagCountires/US.png' },
-  { name: 'تنزانيا', flag: '/flagCountires/TNZ.png' },
-  { name: 'مصر', flag: '/flagCountires/EG.png' },
-  { name: 'باكستان', flag: '/flagCountires/PS.png' },
-  { name: 'الإمارات', flag: '/flagCountires/AE.png' },
-  { name: 'فرنسا', flag: '/flagCountires/FR.png' },
-];
+export default function ImportMarkets(_props: ImportMarketsProps) {
+  const { locale, direction } = useLanguage();
+  const content = IMPORT_MARKETS_CONTENT_I18N[locale];
+  const markets = IMPORT_MARKETS_I18N[locale];
 
-export default function ImportMarkets() {
   return (
     <section
+      dir={direction}
       aria-labelledby="import-markets-title"
       className="overflow-hidden border-b border-stone-100 bg-[#FAFAFA] py-16 sm:py-24"
     >
@@ -28,23 +29,23 @@ export default function ImportMarkets() {
           className="mx-auto mb-10 max-w-2xl text-center sm:mb-14"
         >
           <span className="mb-2 block text-xs font-bold uppercase tracking-widest text-[#C99726]">
-            مصادرنا العالمية
+            {content.eyebrow}
           </span>
           <h2
             id="import-markets-title"
             className="text-2xl font-extrabold tracking-tight text-stone-900 sm:text-3xl"
           >
-            أسواق نستورد منها
+            {content.title}
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-stone-600 sm:text-base">
-            نعمل مع أسواق متعددة لتأمين احتياجات عملائنا من الأعلاف ومكوناتها.
+            {content.description}
           </p>
         </motion.div>
 
         <ul className="grid grid-cols-3 justify-items-center gap-x-4 gap-y-5 sm:gap-6 lg:grid-cols-6">
-          {IMPORT_MARKETS.map((market, index) => (
+          {markets.map((market, index) => (
             <motion.li
-              key={market.name}
+              key={market.flag}
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}

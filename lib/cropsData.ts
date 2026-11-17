@@ -444,3 +444,291 @@ export const SUSTAINABILITY_PILLARS = [
     iconName: 'ShieldCheck'
   }
 ];
+
+export type CropLocale = 'ar' | 'en';
+
+export type CropTranslation = Pick<
+  CropItem,
+  'name' | 'categoryLabel' | 'shortDesc' | 'fullDesc' | 'badge' | 'specs'
+>;
+
+export const CROP_TRANSLATIONS: Record<string, CropTranslation> = {
+  'forage-alfalfa': {
+    name: 'Dried Fodder',
+    categoryLabel: 'Dried Fodder',
+    shortDesc: 'Sun- and heat-dried alfalfa, Bermuda grass and ryegrass forage',
+    fullDesc: 'A complete selection of premium sun- and heat-dried alfalfa, Bermuda grass, Rhodes grass and ryegrass. Sourced from accredited farms in Sudan, Egypt, South Africa, the United States, Spain, Italy, France and Argentina, laboratory tested to rigorous standards and free from endophyte fungus and mould.',
+    badge: 'Internationally Accredited',
+    specs: {
+      origin: 'Sudan, Egypt, South Africa, United States, Spain, Italy, France, Argentina',
+      protein: 'Crude protein: 16% to 22%',
+      rfv: 'Relative feed value: 170–185',
+      purity: 'Excellent purity; free from endophyte fungus',
+      moisture: 'Controlled moisture not exceeding 12%',
+      packaging: 'Double-compressed standard bales and jumbo bales of 400–750 kg',
+      standard: 'UAE and US prime-grade fodder quality standards; compliant with international specifications',
+      usage: 'Large dairy operations, feedlot herds and premium equestrian stables',
+    },
+  },
+  'roughage-straw': {
+    name: 'Straw and Fodder Stalks',
+    categoryLabel: 'Straw and Silage',
+    shortDesc: 'Wheat and rice straw, blended silage and maize silage to support fibre balance and growth',
+    fullDesc: 'Selected clean wheat, barley and rice straw, alongside maize silage and accredited feed blends imported from Spain, the United States and Egypt. An optimal source of cellulosic fibre that supports digestion and improves animal productivity.',
+    badge: 'Balanced Fibre',
+    specs: {
+      origin: 'Spain, United States, Egypt',
+      protein: 'Balanced protein: 6% to 12%',
+      purity: 'Acid detergent fibre: 30% to 40%; neutral detergent fibre: 50% to 60%',
+      moisture: 'Controlled moisture at approximately 12%',
+      packaging: 'Tightly compressed bales secured with weather-resistant wire',
+      standard: 'Pre-screened for aflatoxins and free from excessive moisture and impurities',
+      usage: 'Coarse-feed blending, feedlots and ruminant nutrition',
+    },
+  },
+  'hay-straw-pellets': {
+    name: 'Concentrated Feed and Straw Pellets',
+    categoryLabel: 'Concentrated Feed',
+    shortDesc: 'High-density forage and straw pellets and cubes with outstanding logistics efficiency',
+    fullDesc: 'Pelletised and cubed fodder and straw produced using advanced thermal compression technology. Their high bulk density reduces freight costs and storage space while ensuring uniform nutritional distribution and preventing ingredient selection by animals.',
+    badge: 'Logistics Savings',
+    specs: {
+      origin: 'Internationally accredited processing and cubing facilities',
+      purity: '99% cohesive pellets, free from dust and impurities',
+      moisture: 'Below 10% for extended strategic storage life',
+      packaging: 'Insulated 1,000 kg jumbo bags and bulk container shipments',
+      standard: 'Accredited laboratory quality-control and digestibility parameters',
+      usage: 'Feed mills, cattle and sheep projects, and logistics distribution',
+    },
+  },
+  'feed-commodities': {
+    name: 'Feed Commodities and Ingredients',
+    categoryLabel: 'Feed Commodities',
+    shortDesc: 'Protein meals, yellow maize, soybeans and complete nutritional ingredients',
+    fullDesc: 'Direct supply of leading global feed commodities and raw materials, including soybean meal, feed-grade yellow maize, grain meal, proteins and complete feed ingredients for poultry and livestock farms.',
+    badge: 'Concentrated Protein',
+    specs: {
+      origin: 'United States, Brazil, Argentina and Europe',
+      protein: 'Concentrated crude protein of up to 48% in soybean meal',
+      purity: 'Pure, high-density raw materials meeting animal-feed grades',
+      moisture: 'Moisture compliant with export specifications: 11%–13%',
+      packaging: 'Silo and bulk-vessel shipments, 50 kg polypropylene bags and jumbo bags',
+      standard: 'Food-safety inspection and nutritional analysis certifications, HACCP and ISO',
+      usage: 'Compound feed manufacturers, intensive poultry and cattle operations',
+    },
+  },
+  'timothy-hay': {
+    name: 'Premium Timothy Hay',
+    categoryLabel: 'Dried Fodder',
+    shortDesc: 'Premium Timothy hay for horses and high-yield dairy farms',
+    fullDesc: 'Prime Timothy hay imported from leading specialist farms in the United States. It has balanced cellulose content, a naturally appealing flavour and low sugar levels, making it an excellent choice for racehorses and dairy operations.',
+    badge: 'US Premium Grade',
+    specs: {
+      origin: 'United States',
+      protein: 'Crude protein: 6% to 12%',
+      purity: 'Acid detergent fibre: 30% to 40%; neutral detergent fibre: 50% to 60%',
+      moisture: 'Optimal moisture of approximately 12%',
+      packaging: 'Tied and compressed international shipping bales, 450–700 kg',
+      standard: 'Accredited US premium classification for horses and dairy cattle',
+      usage: 'Thoroughbred stables and high-yield dairy herds',
+    },
+  },
+  'alfalfa-dehydrated': {
+    name: 'Heat-Dehydrated Alfalfa',
+    categoryLabel: 'Dried Fodder',
+    shortDesc: 'Mechanically dehydrated alfalfa preserving its green colour and protein',
+    fullDesc: 'Premium alfalfa rapidly heat-dehydrated immediately after harvest to preserve vitamins, bright green colour and high nutritional value without exposure to adverse weather.',
+    badge: 'Heat Dehydrated',
+    specs: {
+      origin: 'Spain, France, Italy, United States',
+      protein: 'High crude protein: 18% to 22%',
+      rfv: 'Relative feed value: 150–185',
+      purity: 'Acid detergent fibre: 27% to 32%; fully free from mould and aflatoxins',
+      moisture: 'Guaranteed low moisture below 12%',
+      packaging: 'Compressed, sanitised bales of 400–800 kg',
+      standard: 'Compliant with US Department of Agriculture good and premium grade specifications',
+      usage: 'Specialist dairy cow nutrition and concentrated feed blends',
+    },
+  },
+  'rhodes-green-bermuda': {
+    name: 'Green Rhodes and Bermuda Grass',
+    categoryLabel: 'Dried Fodder',
+    shortDesc: 'Pure, soft green forage with excellent digestibility for livestock',
+    fullDesc: 'Carefully selected Rhodes and green Bermuda grasses rich in minerals and highly palatable. They provide balanced nutrition that supports healthy growth and efficient feed conversion.',
+    badge: 'Natural and Pure',
+    specs: {
+      origin: 'Modern irrigated farms and Spain',
+      protein: 'Crude protein: 8% to 14%',
+      purity: 'Fully free from foreign grass and mineral impurities',
+      moisture: 'Excellent moisture content below 12%',
+      packaging: 'UV-resistant wrapped bales',
+      standard: 'Quarantine pest-free and feed-safety certification',
+      usage: 'Sheep, goat and camel nutrition, and modern feedlot operations',
+    },
+  },
+  'coastal-bermuda': {
+    name: 'Dried Coastal Bermuda Grass',
+    categoryLabel: 'Dried Fodder',
+    shortDesc: 'High-purity, sun-dried Coastal Bermuda hay that is easy to store',
+    fullDesc: 'Coastal Bermuda forage dried in specialist fields under close agricultural supervision. Its strong fibre structure and high purity make it ideal for year-round supplies to horses and livestock.',
+    badge: 'Accredited Coastal Grade',
+    specs: {
+      origin: 'Spain, United States',
+      protein: 'Crude protein: 8% to 12%',
+      purity: 'Neutral detergent fibre: 54% to 75%; acid detergent fibre: 30% to 40%',
+      moisture: 'Balanced moisture of approximately 12%',
+      packaging: 'High-density compressed bales for road and sea freight',
+      standard: 'Internationally accredited premium Coastal Bermuda classification',
+      usage: 'Equestrian clubs, calf farms and strategic storage',
+    },
+  },
+  'peanuts-groundnuts': {
+    name: 'Premium Groundnuts',
+    categoryLabel: 'Seeds and Feed Ingredients',
+    shortDesc: 'Premium red groundnuts for oil mills, food manufacturing and confectionery',
+    fullDesc: 'Carefully selected red groundnuts with full, uniform kernels, fully free from aflatoxins and with an oil content exceeding 48%. Suitable for premium food manufacturing and clean oil extraction.',
+    badge: '48% Oil Content',
+    specs: {
+      origin: 'Sudan, Egypt and Argentina',
+      protein: 'Plant protein: 24% to 28%',
+      purity: '99% sound kernels, free from defects and impurities',
+      moisture: 'Below 7% to a maximum of 8%',
+      packaging: 'Aerated 25 kg and 50 kg jute and polypropylene bags',
+      standard: 'Rigorous aflatoxin testing and ISO certification',
+      usage: 'Peanut butter production, oil extraction, roasting and food manufacturing',
+    },
+  },
+  'soybean-meal-hipro': {
+    name: 'High-Protein Soybean Meal',
+    categoryLabel: 'Seeds and Feed Ingredients',
+    shortDesc: 'The primary concentrated protein source for feed mills and poultry operations',
+    fullDesc: 'Extracted and toasted soybean meal meeting global high-protein specifications, with no less than 48% crude protein and tightly controlled urease activity. A core ingredient in poultry, aquaculture and livestock feed formulations.',
+    badge: '48% Protein',
+    specs: {
+      origin: 'United States, Brazil and Argentina',
+      protein: 'Crude protein: minimum 48%',
+      purity: 'Free from solvent residues; urease activity below 0.2',
+      moisture: 'Maximum moisture: 12%',
+      packaging: 'Bulk discharge at ports and 1,000 kg jumbo bags',
+      standard: 'Global quality certifications and free from harmful GMOs',
+      usage: 'Poultry feed manufacturers, feedlots and aquaculture farms',
+    },
+  },
+  'yellow-soybeans-grade1': {
+    name: 'Yellow Soybeans',
+    categoryLabel: 'Seeds and Feed Ingredients',
+    shortDesc: 'Uniform yellow soybeans rich in oil and protein for processing plants',
+    fullDesc: 'Premium laser-sorted yellow soybeans with high oil and protein content and no breakage or damage. Supplied under accredited import contracts for oil extraction and export.',
+    badge: 'Prime Grade',
+    specs: {
+      origin: 'United States, Brazil and Argentina',
+      protein: 'Plant protein: minimum 42%',
+      purity: 'Minimum 99.5% pure yellow kernels',
+      moisture: 'Below 11.5%',
+      packaging: 'Marine bulk containers and 1,000 kg jumbo bags',
+      standard: 'US Grade 1 classification and compliant with food authority requirements',
+      usage: 'Soybean oil extraction, soy milk and soy foods, and animal feed',
+    },
+  },
+  'high-energy-pellets': {
+    name: 'High-Energy Feed Pellets',
+    categoryLabel: 'Concentrated Feed',
+    shortDesc: 'Uniform protein pellets designed to improve feed conversion rates',
+    fullDesc: 'High-energy feed pellets made from a uniform blend of grains, protein sources and fibre, thermally processed to improve digestion and nutrient absorption and reduce feed waste at troughs.',
+    badge: 'High Metabolisable Energy',
+    specs: {
+      origin: 'Advanced regional and international production and pelleting lines',
+      protein: 'Crude protein: 16% to 20%',
+      purity: '98% cohesive pellets, resistant to crumbling',
+      moisture: 'Below 10%',
+      packaging: '50 kg woven bags and 1,000 kg jumbo bags',
+      standard: 'Quality-control certification and periodic mineral and acid calibration',
+      usage: 'Calf and sheep fattening, and meat and dairy operations',
+    },
+  },
+  'white-sorghum-grain': {
+    name: 'White Sorghum Grain',
+    categoryLabel: 'Feed Grains',
+    shortDesc: 'Pure white sorghum, naturally gluten-free and ideal for food and feed',
+    fullDesc: 'Carefully selected white sorghum, an excellent high-energy source rich in starch and minerals. Naturally gluten-free, it is a key ingredient in healthy foods, poultry feed and livestock rations.',
+    badge: 'Gluten Free',
+    specs: {
+      origin: 'Sudan, India and United States',
+      protein: 'Crude protein: 9% to 11%',
+      purity: '99% pure white kernels',
+      moisture: 'Below 12%',
+      packaging: '50 kg jute and polypropylene bags and bulk shipments',
+      standard: 'Certificates of origin and accredited pest and quality inspections',
+      usage: 'Gluten-free flour production, poultry feed and feed manufacturing',
+    },
+  },
+  'hard-amber-wheat-grain': {
+    name: 'High-Quality Hard Wheat',
+    categoryLabel: 'Feed Grains',
+    shortDesc: 'Premium hard amber wheat for semolina, pasta and bakery production',
+    fullDesc: 'Premium hard amber wheat with high kernel density, strong gluten and protein content ranging from 13.5% to 14.5%. Rigorously sorted to ensure exceptional purity and minimal broken kernels.',
+    badge: 'Strong Gluten and Protein',
+    specs: {
+      origin: 'Russia, Ukraine, Canada and Australia',
+      protein: 'Crude protein: 13.5% to 14.5%',
+      purity: 'Minimum 99.5% purity with less than 1% broken kernels',
+      moisture: 'Balanced moisture, maximum 11.5%',
+      packaging: 'Marine bulk vessels and silos, and 50 kg bags',
+      standard: 'Compliant with food authority specifications and ISO standards',
+      usage: 'Premium semolina mills, pasta manufacturers and bakeries',
+    },
+  },
+  'complete-muesli-feed': {
+    name: 'Complete Feed Mix',
+    categoryLabel: 'Concentrated Feed',
+    shortDesc: 'A rich flake, feed pellet and seed mix for horses and livestock',
+    fullDesc: 'A complete feed mix manufactured from steam-cooked yellow maize flakes, alfalfa pellets, sunflower seeds and protein pellets. It delivers maximum biological energy and digestibility in one complete ration.',
+    badge: 'Complete Formula',
+    specs: {
+      origin: 'Accredited international feed-mix plants',
+      protein: 'Balanced protein: 14% to 16%',
+      purity: 'Uniform blend, free from dust and harmful preservatives',
+      moisture: 'Safe moisture below 11%',
+      packaging: '20 kg and 25 kg multi-layer paper bags',
+      standard: 'Accredited European and US feed-safety standards',
+      usage: 'Show-jumping and racehorses, dairy cattle and premium breeding calves',
+    },
+  },
+  'cottonseed-oilseed-meal': {
+    name: 'Cottonseed Meal and Oilseed Flakes',
+    categoryLabel: 'Seeds and Feed Ingredients',
+    shortDesc: 'Cottonseed meal and protein- and fibre-rich oilseed flakes for livestock',
+    fullDesc: 'High-value cottonseed meal, heat treated to remove free gossypol. Its excellent protein content and natural cellulosic fibre support milk yields and butterfat levels in dairy herds.',
+    badge: 'Protein and Milk Fat',
+    specs: {
+      origin: 'Egypt, India and United States',
+      protein: 'Crude plant protein: 36% to 41%',
+      purity: 'Pure flakes and meal, free from soil and impurities',
+      moisture: 'Below 10% to 12%',
+      packaging: '50 kg jute and polypropylene bags, and jumbo bags',
+      standard: 'Toxin-free analysis certification and accredited quality standards',
+      usage: 'Dairy cattle, feedlots and concentrated ration manufacturing',
+    },
+  },
+};
+
+export const CROP_COPY_BY_ID = CROPS_DATA.reduce<
+  Record<string, Record<CropLocale, CropTranslation>>
+>((copy, crop) => {
+  copy[crop.id] = {
+    ar: {
+      name: crop.name,
+      categoryLabel: crop.categoryLabel,
+      shortDesc: crop.shortDesc,
+      fullDesc: crop.fullDesc,
+      badge: crop.badge,
+      specs: crop.specs,
+    },
+    en: CROP_TRANSLATIONS[crop.id],
+  };
+  return copy;
+}, {});
+
+export function getCropCopy(cropId: string, locale: CropLocale = 'en'): CropTranslation | undefined {
+  return CROP_COPY_BY_ID[cropId]?.[locale];
+}

@@ -3,27 +3,22 @@
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { ArrowRight, Wheat } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Wheat } from 'lucide-react';
 import { motion, AnimatePresence, type Variants } from 'motion/react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import CropCard from '@/components/CropCard';
-import { CROPS_DATA, CropItem } from '@/lib/cropsData';
+import Navbar from '@/components/Navbar/component';
+import Footer from '@/components/Footer/component';
+import CropCard from '@/components/CropCard/component';
+import { useLanguage } from '@/components/LanguageProvider/component';
+import { CROPS_DATA, CropItem, getCropCopy } from '@/lib/cropsData';
+import { FILTER_CATEGORY_IDS, PRODUCTS_PAGE_COPY } from './data';
 
 // Dynamically import heavy modals to optimize initial bundle & cache performance
-const ProductDetailModal = dynamic(() => import('@/components/ProductDetailModal'), {
+const ProductDetailModal = dynamic(() => import('@/components/ProductDetailModal/component'), {
   ssr: false,
 });
-const QuoteRequestModal = dynamic(() => import('@/components/QuoteRequestModal'), {
+const QuoteRequestModal = dynamic(() => import('@/components/QuoteRequestModal/component'), {
   ssr: false,
 });
-
-const FILTER_CATEGORIES = [
-  { id: 'all', label: 'جميع المنتجات' },
-  { id: 'fodder', label: 'الأعلاف' },
-  { id: 'seeds', label: 'بذور ومكونات الأعلاف' },
-  { id: 'grains', label: 'حبوب الأعلاف' },
-] as const;
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -49,15 +44,26 @@ const itemVariants: Variants = {
 };
 
 export default function ProductsPage() {
+  const { locale, direction } = useLanguage();
+  const copy = PRODUCTS_PAGE_COPY[locale];
   const [selectedCrop, setSelectedCrop] = useState<CropItem | null>(null);
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
   const [selectedCropForQuote, setSelectedCropForQuote] = useState<string>('');
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
+  const localizedCrops = useMemo(
+    () =>
+      CROPS_DATA.map((crop) => ({
+        ...crop,
+        ...getCropCopy(crop.id, locale),
+      })),
+    [locale],
+  );
+
   const filteredCrops = useMemo(() => {
-    if (activeCategory === 'all') return CROPS_DATA;
-    return CROPS_DATA.filter((crop) => crop.category === activeCategory);
-  }, [activeCategory]);
+    if (activeCategory === 'all') return localizedCrops;
+    return localizedCrops.filter((crop) => crop.category === activeCategory);
+  }, [activeCategory, localizedCrops]);
 
   const handleOpenQuote = (cropName?: string) => {
     setSelectedCropForQuote(cropName || '');
@@ -65,7 +71,10 @@ export default function ProductsPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FDFDFC] text-stone-900">
+    <div
+      dir={direction}
+      className="min-h-screen flex flex-col bg-[#FDFDFC] text-stone-900"
+    >
       {/* Top Navbar with Route-Aware Active Highlights */}
       <Navbar onOpenQuoteModal={() => handleOpenQuote()} />
 
@@ -85,30 +94,34 @@ export default function ProductsPage() {
                   href="/"
                   className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white border border-white/15 transition-colors cursor-pointer text-xs font-semibold"
                 >
-                  <ArrowRight className="w-4 h-4 text-[#E5B842]" />
-                  <span>العودة للرئيسية</span>
+                  {direction === 'rtl' ? (
+                    <ArrowRight className="w-4 h-4 text-[#E5B842]" />
+                  ) : (
+                    <ArrowLeft className="w-4 h-4 text-[#E5B842]" />
+                  )}
+                  <span>{copy.backHome}</span>
                 </Link>
 
                 <div className="hidden sm:flex items-center gap-2 text-stone-400">
                   <span>/</span>
-                  <span className="text-[#F3D78A]">كتالوج الأعلاف</span>
+                  <span className="text-[#F3D78A]">{copy.breadcrumb}</span>
                 </div>
               </div>
 
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-900/90 border border-[#E5B842]/30 text-[11px] font-semibold text-[#F3D78A]">
                 <Wheat className="w-3.5 h-3.5 text-[#E5B842]" />
-                <span>توريد موثوق طوال العام</span>
+                <span>{copy.supplyBadge}</span>
               </div>
             </div>
 
             {/* Header Content */}
             <div className="max-w-3xl">
               <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white mb-3 leading-tight">
-                كافة منتجات الأعلاف
+                {copy.title}
               </h1>
 
               <p className="text-stone-300 text-xs sm:text-sm leading-relaxed text-balance max-w-2xl">
-                نوفر ونورّد أجود الأعلاف الخضراء والجافة ومكونات العلف وفق أعلى معايير الجودة، مع إمكانية التوريد المباشر لكبرى مزارع الإنتاج الحيواني ومصانع الأعلاف.
+                {copy.description}
               </p>
             </div>
           </div>
@@ -120,12 +133,12 @@ export default function ProductsPage() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-stone-200/80">
             {/* Category Filter Chips */}
             <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
-              {FILTER_CATEGORIES.map((cat) => {
-                const isActive = activeCategory === cat.id;
+              {FILTER_CATEGORY_IDS.map((categoryId) => {
+                const isActive = activeCategory === categoryId;
                 return (
                   <button
-                    key={cat.id}
-                    onClick={() => setActiveCategory(cat.id)}
+                    key={categoryId}
+                    onClick={() => setActiveCategory(categoryId)}
                     type="button"
                     className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
                       isActive
@@ -133,7 +146,7 @@ export default function ProductsPage() {
                         : 'bg-stone-100 hover:bg-stone-200/80 text-stone-600'
                     }`}
                   >
-                    {cat.label}
+                    {copy.filters[categoryId]}
                   </button>
                 );
               })}
@@ -141,7 +154,11 @@ export default function ProductsPage() {
 
             {/* Active Count */}
             <div className="text-xs font-medium text-stone-500 shrink-0">
-              عرض <strong className="text-stone-900 font-bold">{filteredCrops.length}</strong> من أصل {CROPS_DATA.length} منتج
+              {copy.count.showing}{' '}
+              <strong className="text-stone-900 font-bold">
+                {filteredCrops.length}
+              </strong>{' '}
+              {copy.count.of} {CROPS_DATA.length} {copy.count.products}
             </div>
           </div>
 
@@ -171,13 +188,13 @@ export default function ProductsPage() {
           ) : (
             <div className="text-center py-16 bg-stone-50 rounded-2xl border border-stone-200/60 mt-8">
               <Wheat className="w-10 h-10 text-stone-400 mx-auto mb-3 opacity-60" />
-              <p className="text-sm font-bold text-stone-700">لا توجد منتجات ضمن هذا التصنيف حالياً</p>
+              <p className="text-sm font-bold text-stone-700">{copy.emptyTitle}</p>
               <button
                 onClick={() => setActiveCategory('all')}
                 type="button"
                 className="mt-3 px-4 py-1.5 rounded-lg bg-stone-900 text-white text-xs font-semibold hover:bg-stone-800 transition-colors cursor-pointer"
               >
-                عرض كل المنتجات
+                {copy.showAll}
               </button>
             </div>
           )}

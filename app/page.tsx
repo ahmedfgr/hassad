@@ -2,25 +2,25 @@
 
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
-import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
-import AboutVision from '@/components/AboutVision';
-import AboutUs from '@/components/AboutUs';
-import ImportMarkets from '@/components/ImportMarkets';
-import CropsCatalog from '@/components/CropsCatalog';
-import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar/component';
+import Hero from '@/components/Hero/component';
+import AboutVision from '@/components/AboutVision/component';
+import AboutUs from '@/components/AboutUs/component';
+import ImportMarkets from '@/components/ImportMarkets/component';
+import CropsCatalog from '@/components/CropsCatalog/component';
+import Footer from '@/components/Footer/component';
 import { CropItem } from '@/lib/cropsData';
 
 // Progressive dynamic component loading for optimal browser caching & code splitting
-const ContactSection = dynamic(() => import('@/components/ContactSection'), {
+const ContactSection = dynamic(() => import('@/components/ContactSection/component'), {
   loading: () => <div className="py-20 min-h-[240px]" />,
 });
 
-const ProductDetailModal = dynamic(() => import('@/components/ProductDetailModal'), {
+const ProductDetailModal = dynamic(() => import('@/components/ProductDetailModal/component'), {
   ssr: false,
 });
 
-const QuoteRequestModal = dynamic(() => import('@/components/QuoteRequestModal'), {
+const QuoteRequestModal = dynamic(() => import('@/components/QuoteRequestModal/component'), {
   ssr: false,
 });
 

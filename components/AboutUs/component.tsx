@@ -1,34 +1,36 @@
 'use client';
 
-import React from 'react';
 import Image from 'next/image';
 import { Leaf } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useLanguage } from '../LanguageProvider/component';
+import { ABOUT_IMAGES_I18N, ABOUT_TAGS_I18N, ABOUT_US_CONTENT_I18N } from './data';
+import type { AboutUsProps } from './types';
 
-const ABOUT_TAGS = [
-  'جودة معتمدة ومسؤولة',
-  'إمداد مستدام',
-  'شراكات استراتيجية',
-];
+export default function AboutUs(_props: AboutUsProps) {
+  const { locale, direction } = useLanguage();
+  const isRtl = direction === 'rtl';
+  const content = ABOUT_US_CONTENT_I18N[locale];
+  const tags = ABOUT_TAGS_I18N[locale];
+  const images = ABOUT_IMAGES_I18N[locale];
 
-export default function AboutUs() {
   return (
     <section
       id="about-us"
+      dir={direction}
       aria-labelledby="about-us-title"
       className="overflow-hidden border-b border-stone-100 bg-[#FAFAFA] py-20 sm:py-24"
     >
       <div
-        dir="ltr"
+        dir={direction}
         className="mx-auto grid max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8"
       >
         <motion.div
-          dir="rtl"
-          initial={{ opacity: 0, x: 24 }}
+          initial={{ opacity: 0, x: isRtl ? 24 : -24 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.75, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          className="order-1 text-center lg:order-2 lg:text-right"
+          className="order-1 text-center lg:text-start"
         >
           <div className="mb-5 flex items-center justify-center gap-3 sm:mb-6 lg:justify-start">
             <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#E5B842]/40 bg-[#E5B842]/10 text-[#C99726] shadow-sm">
@@ -38,17 +40,17 @@ export default function AboutUs() {
               id="about-us-title"
               className="text-2xl font-extrabold tracking-tight text-stone-900 sm:text-3xl"
             >
-              عنّا
+              {content.title}
             </h2>
           </div>
           <p className="text-sm leading-8 text-stone-600 text-balance sm:text-base sm:leading-9">
-            نعمل كشريك استراتيجي يربط بين نخبة الموردين المعتمدين والمزارع ومشاريع الثروة الحيوانية في المنطقة. وعبر منظومة لوجستية متكاملة وعالية الكفاءة، نوفر حلول تغذية مستدامة توازن بين القيمة الغذائية الفائقة والجدوى الاقتصادية، لدعم الأمن الغذائي وتعزيز استمرارية أعمال شركائنا.
+            {content.description}
           </p>
 
           <ul className="mt-7 flex flex-wrap justify-center gap-3 sm:mt-8 sm:gap-4 lg:justify-start">
-            {ABOUT_TAGS.map((tag, index) => (
+            {tags.map((tag, index) => (
               <motion.li
-                key={tag}
+                key={index}
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
@@ -67,31 +69,27 @@ export default function AboutUs() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: -24 }}
+          initial={{ opacity: 0, x: isRtl ? -24 : 24 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-          className="order-2 grid grid-cols-2 gap-3 sm:gap-4 lg:order-1"
-          aria-label="صور من الحقول الزراعية"
+          className="order-2 grid grid-cols-2 gap-3 sm:gap-4"
+          aria-label={content.galleryAriaLabel}
         >
-          <div className="relative aspect-square overflow-hidden rounded-3xl border border-stone-200/80 shadow-sm">
-            <Image
-              src="/hero_image_2.png"
-              alt="سنابل القمح في الحقول الزراعية"
-              fill
-              sizes="(min-width: 1024px) 25vw, 45vw"
-              className="object-cover"
-            />
-          </div>
-          <div className="relative aspect-square overflow-hidden rounded-3xl border border-stone-200/80 shadow-sm">
-            <Image
-              src="/hero_image_3.png"
-              alt="مشهد جوي للمزارع والحقول"
-              fill
-              sizes="(min-width: 1024px) 25vw, 45vw"
-              className="object-cover"
-            />
-          </div>
+          {images.map((image) => (
+            <div
+              key={image.src}
+              className="relative aspect-square overflow-hidden rounded-3xl border border-stone-200/80 shadow-sm"
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                sizes="(min-width: 1024px) 25vw, 45vw"
+                className="object-cover"
+              />
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>

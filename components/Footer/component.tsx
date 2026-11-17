@@ -4,15 +4,27 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Mail, Phone, MapPin, Send, CheckCircle2 } from 'lucide-react';
 import { motion } from 'motion/react';
-import { THEME_COLORS } from '@/lib/theme';
-
-interface FooterProps {
-  onOpenQuoteModal: () => void;
-}
+import { useLanguage } from '@/components/LanguageProvider/component';
+import {
+  FOOTER_BRAND_I18N,
+  FOOTER_CONTACTS_I18N,
+  FOOTER_COPY_I18N,
+  FOOTER_PARTNERSHIP_I18N,
+  FOOTER_QUICK_LINKS_I18N,
+  FOOTER_SOCIAL_LINKS_I18N,
+} from './data';
+import type { FooterProps } from './types';
 
 export default function Footer({ onOpenQuoteModal }: FooterProps) {
+  const { locale, direction } = useLanguage();
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const brand = FOOTER_BRAND_I18N[locale];
+  const copy = FOOTER_COPY_I18N[locale];
+  const partnership = FOOTER_PARTNERSHIP_I18N[locale];
+  const socialLinks = FOOTER_SOCIAL_LINKS_I18N[locale];
+  const quickLinks = FOOTER_QUICK_LINKS_I18N[locale];
+  const contacts = FOOTER_CONTACTS_I18N[locale];
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,13 +60,13 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
             <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center justify-center gap-6 text-center">
               <div>
                 <span className="mb-2 block text-xs font-bold uppercase tracking-widest text-[#F3D78A]">
-                  انضم لشركائنا
+                  {partnership.eyebrow}
                 </span>
                 <h3 className="mb-2.5 text-2xl font-extrabold text-white sm:text-3xl">
-                  ابدأ شراكتك مع حصاد اليوم
+                  {partnership.title}
                 </h3>
                 <p className="text-xs leading-relaxed text-amber-50/90 text-balance sm:text-sm">
-                  تواصل معنا للحصول على عروض أسعار تنافسية وجداول توريد أعلاف مخصصة تلبي احتياجات مزرعتك أو مصنعك.
+                  {partnership.description}
                 </p>
               </div>
 
@@ -64,13 +76,13 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
                   type="button"
                   className="cursor-pointer whitespace-nowrap rounded-xl border border-white bg-white px-7 py-3 text-xs font-bold text-[#76520D] transition-colors hover:bg-amber-50 active:scale-95 sm:text-sm"
                 >
-                  طلب عرض سعر
+                  {partnership.quoteLabel}
                 </button>
                 <a
-                  href="#contact"
+                  href={partnership.contactHref}
                   className="whitespace-nowrap rounded-xl border border-white/50 bg-[#76520D]/30 px-6 py-3 text-xs font-bold text-white transition-colors hover:bg-[#76520D]/45 active:scale-95 sm:text-sm"
                 >
-                  تواصل معنا
+                  {partnership.contactLabel}
                 </a>
               </div>
             </div>
@@ -83,8 +95,8 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
               <div className="flex items-center gap-3 text-white">
                 <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl overflow-hidden bg-white/10 p-1 border border-white/20 flex items-center justify-center backdrop-blur-xs">
                   <Image
-                    src="/logo.png"
-                    alt="شعار حصاد"
+                    src={brand.logoSrc}
+                    alt={brand.logoAlt}
                     width={48}
                     height={48}
                     className="w-full h-full object-contain"
@@ -92,92 +104,74 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-xl font-bold tracking-tight text-white">حصاد</span>
+                  <span className="text-xl font-bold tracking-tight text-white">{brand.name}</span>
                   <span className="text-[11px] font-semibold text-[#F3D78A]">
-                    لتوريد الأعلاف
+                    {brand.subtitle}
                   </span>
                 </div>
               </div>
 
             <p className="text-xs sm:text-sm text-stone-400 leading-relaxed text-balance">
-              نعمل في شركة حصاد على توريد وتوفير أجود الأعلاف الخضراء والجافة ومكونات العلف للمزارع ومصانع الأعلاف، وفق مواصفات جودة معتمدة وشراكات تجارية موثوقة.
+              {brand.description}
             </p>
 
             <div className="flex items-center gap-3 pt-2">
-              <a
-                href="#"
-                aria-label="منصة إكس"
-                className="px-3 h-9 rounded-lg bg-stone-800 hover:bg-[#E5B842] hover:text-stone-950 text-stone-400 transition-colors flex items-center justify-center text-[11px] font-bold"
-              >
-                إكس
-              </a>
-              <a
-                href="#"
-                aria-label="لينكد إن"
-                className="px-3 h-9 rounded-lg bg-stone-800 hover:bg-[#E5B842] hover:text-stone-950 text-stone-400 transition-colors flex items-center justify-center text-[11px] font-bold"
-              >
-                لينكد
-              </a>
-              <a
-                href="#"
-                aria-label="إنستغرام"
-                className="px-3 h-9 rounded-lg bg-stone-800 hover:bg-[#E5B842] hover:text-stone-950 text-stone-400 transition-colors flex items-center justify-center text-[11px] font-bold"
-              >
-                إنستغرام
-              </a>
+              {socialLinks.map((link) => (
+                <a
+                  key={link.ariaLabel}
+                  href={link.href}
+                  aria-label={link.ariaLabel}
+                  className="px-3 h-9 rounded-lg bg-stone-800 hover:bg-[#E5B842] hover:text-stone-950 text-stone-400 transition-colors flex items-center justify-center text-[11px] font-bold"
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Col 2: Quick Links (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-sm font-bold text-white tracking-wider">روابط سريعة</h4>
+            <h4 className="text-sm font-bold text-white tracking-wider">{copy.quickLinksTitle}</h4>
             <ul className="space-y-2 text-xs sm:text-sm text-stone-400">
-              <li>
-                <a href="#hero" className="hover:text-[#F3D78A] transition-colors">الرئيسية</a>
-              </li>
-              <li>
-                <a href="#about-us" className="hover:text-[#F3D78A] transition-colors">من نحن</a>
-              </li>
-              <li>
-                <a href="/products" className="hover:text-[#F3D78A] transition-colors">منتجات الأعلاف</a>
-              </li>
-              <li>
-                <a href="#contact" className="hover:text-[#F3D78A] transition-colors">اتصل بنا</a>
-              </li>
+              {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} className="hover:text-[#F3D78A] transition-colors">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Col 4: Contact & Newsletter (3 cols) */}
           <div className="lg:col-span-6 space-y-4">
-            <h4 className="text-sm font-bold text-white tracking-wider">تواصل معنا</h4>
+            <h4 className="text-sm font-bold text-white tracking-wider">{copy.contactTitle}</h4>
             <div className="space-y-2.5 text-xs sm:text-sm text-stone-400">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-[#E5B842] shrink-0" />
-                <span>الإمارات العربية المتحدة</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-[#E5B842] shrink-0" />
-                <a href="mailto:info@hassadfodders.com" className="hover:text-white transition-colors">
-                  <span dir="ltr">info@hassadfodders.com</span>
-                </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-[#E5B842] shrink-0" />
-                <a href="tel:+971544428196" className="hover:text-white transition-colors">
-                  <span dir="ltr">+971 54 442 8196</span>
-                </a>
-              </div>
+              {contacts.map((contact) => (
+                <div key={contact.icon} className="flex items-center gap-2">
+                  {contact.icon === 'location' && <MapPin className="w-4 h-4 text-[#E5B842] shrink-0" />}
+                  {contact.icon === 'mail' && <Mail className="w-4 h-4 text-[#E5B842] shrink-0" />}
+                  {contact.icon === 'phone' && <Phone className="w-4 h-4 text-[#E5B842] shrink-0" />}
+                  {contact.href ? (
+                    <a href={contact.href} className="hover:text-white transition-colors">
+                      <span dir={contact.direction}>{contact.value}</span>
+                    </a>
+                  ) : (
+                    <span>{contact.value}</span>
+                  )}
+                </div>
+              ))}
             </div>
 
             {/* Newsletter Subscription */}
             <div className="pt-2">
               <span className="text-xs font-semibold text-stone-300 block mb-2">
-                النشرة الدورية لأسواق الأعلاف
+                {copy.newsletterTitle}
               </span>
               {subscribed ? (
                 <div className="p-2.5 bg-emerald-950/80 border border-emerald-600/50 rounded-xl text-emerald-300 text-xs flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4" />
-                  <span>شكراً لاشتراكك في نشرة حصاد!</span>
+                  <span>{copy.newsletterSuccess}</span>
                 </div>
               ) : (
                 <form onSubmit={handleSubscribe} className="flex items-center gap-1.5">
@@ -186,14 +180,14 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
                     required
                     value={newsletterEmail}
                     onChange={(e) => setNewsletterEmail(e.target.value)}
-                    placeholder="أدخل بريدك الإلكتروني"
+                    placeholder={copy.newsletterPlaceholder}
                     className="flex-1 px-3 py-2 text-xs bg-stone-900 border border-stone-700 rounded-lg text-white placeholder-stone-500 focus:outline-none focus:border-[#E5B842]"
-                    dir="rtl"
+                    dir={direction}
                   />
                   <button
                     type="submit"
                     className="p-2 bg-[#E5B842] hover:bg-[#F0C446] text-stone-950 rounded-lg transition-colors cursor-pointer shrink-0"
-                    aria-label="اشتراك"
+                    aria-label={copy.newsletterAriaLabel}
                   >
                     <Send className="w-4 h-4" />
                   </button>
@@ -206,14 +200,15 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
         {/* Sub-Footer Copyright & Legal */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
           <div>
-            © {new Date().getFullYear()} شركة حصاد لتوريد الأعلاف. جميع الحقوق محفوظة.
+            © {new Date().getFullYear()} {copy.copyright}
           </div>
           <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-stone-300 transition-colors">سياسة الخصوصية</a>
-            <span aria-hidden="true">•</span>
-            <a href="#" className="hover:text-stone-300 transition-colors">الشروط والأحكام</a>
-            <span aria-hidden="true">•</span>
-            <a href="#" className="hover:text-stone-300 transition-colors">شهادات الجودة</a>
+            {copy.legalLinks.map((label, index) => (
+              <React.Fragment key={label}>
+                {index > 0 && <span aria-hidden="true">•</span>}
+                <a href="#" className="hover:text-stone-300 transition-colors">{label}</a>
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </div>

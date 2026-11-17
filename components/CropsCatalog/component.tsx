@@ -1,28 +1,20 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { motion } from 'motion/react';
-import { CROPS_DATA, CropItem } from '@/lib/cropsData';
-import CropCard from './CropCard';
-
-interface CropsCatalogProps {
-  onSelectCrop: (crop: CropItem) => void;
-  onRequestQuote: (cropName?: string) => void;
-}
-
-type CategoryType = 'all' | 'grains' | 'seeds' | 'fodder' | 'other';
+import { CROPS_DATA } from '@/lib/cropsData';
+import CropCard from '../CropCard/component';
+import { useLanguage } from '../LanguageProvider/component';
+import { CATALOG_COPY_I18N, CROP_CATEGORIES_I18N } from './data';
+import type { CategoryType, CropsCatalogProps } from './types';
 
 export default function CropsCatalog({ onSelectCrop, onRequestQuote }: CropsCatalogProps) {
+  const { locale, direction } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<CategoryType>('all');
-
-  const categories = [
-    { id: 'all', label: 'الكل' },
-    { id: 'fodder', label: 'الأعلاف' },
-    { id: 'grains', label: 'حبوب الأعلاف' },
-    { id: 'seeds', label: 'بذور ومكونات' },
-  ];
+  const copy = CATALOG_COPY_I18N[locale];
+  const categories = CROP_CATEGORIES_I18N[locale];
 
   const filteredCrops = useMemo(() => {
     return CROPS_DATA.filter((crop) => {
@@ -31,9 +23,12 @@ export default function CropsCatalog({ onSelectCrop, onRequestQuote }: CropsCata
   }, [activeCategory]);
 
   return (
-    <section id="crops" className="py-20 sm:py-28 bg-white border-b border-stone-100 overflow-hidden">
+    <section
+      id="crops"
+      dir={direction}
+      className="py-20 sm:py-28 bg-white border-b border-stone-100 overflow-hidden"
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Centered Section Header with Scroll Reveal */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -42,14 +37,13 @@ export default function CropsCatalog({ onSelectCrop, onRequestQuote }: CropsCata
           className="text-center max-w-2xl mx-auto mb-10"
         >
           <span className="text-xs font-bold text-[#A87913] uppercase tracking-widest block mb-2">
-            أعلاف حصاد
+            {copy.eyebrow}
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight">
-            أصناف منتقاة بأعلى معايير النقاء والجودة
+            {copy.title}
           </h2>
         </motion.div>
 
-        {/* Centered Category Filter Bar */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -59,13 +53,13 @@ export default function CropsCatalog({ onSelectCrop, onRequestQuote }: CropsCata
         >
           <div
             role="group"
-            aria-label="تصفية الأعلاف حسب الفئة"
+            aria-label={copy.filterAriaLabel}
             className="mx-auto flex w-full max-w-full gap-2 overflow-x-auto rounded-2xl border border-stone-200/60 bg-stone-100/90 p-2 sm:w-fit sm:gap-1 sm:rounded-xl sm:p-1"
           >
             {categories.map((cat) => (
               <button
                 key={cat.id}
-                onClick={() => setActiveCategory(cat.id as CategoryType)}
+                onClick={() => setActiveCategory(cat.id)}
                 type="button"
                 aria-pressed={activeCategory === cat.id}
                 className={`min-h-11 shrink-0 whitespace-nowrap rounded-lg px-3 py-2 text-xs font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A87913] sm:w-auto sm:px-5 sm:text-sm ${
@@ -80,7 +74,6 @@ export default function CropsCatalog({ onSelectCrop, onRequestQuote }: CropsCata
           </div>
         </motion.div>
 
-        {/* Crops Grid with Cascading Stagger: 2 columns on mobile, 4 on desktop */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {filteredCrops.map((crop, idx) => (
             <motion.div
@@ -105,7 +98,6 @@ export default function CropsCatalog({ onSelectCrop, onRequestQuote }: CropsCata
           ))}
         </div>
 
-        {/* Action Button linking to Dedicated Products Page */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -117,8 +109,15 @@ export default function CropsCatalog({ onSelectCrop, onRequestQuote }: CropsCata
             href="/products"
             className="inline-flex items-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 rounded-2xl bg-stone-900 hover:bg-stone-950 border border-stone-800 hover:border-[#E5B842]/50 transition-all text-lg sm:text-xl font-extrabold text-[#E5B842] group cursor-pointer"
           >
-            <span>الكتالوج</span>
-            <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6 text-[#E5B842] transition-transform duration-300 group-hover:-translate-x-1.5" />
+            <span>{copy.catalogLink}</span>
+            <ArrowLeft
+              aria-hidden="true"
+              className={`w-5 h-5 sm:w-6 sm:h-6 text-[#E5B842] transition-transform duration-300 ${
+                direction === 'rtl'
+                  ? 'group-hover:-translate-x-1.5'
+                  : 'rotate-180 group-hover:translate-x-1.5'
+              }`}
+            />
           </Link>
         </motion.div>
       </div>
