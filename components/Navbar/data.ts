@@ -6,7 +6,7 @@ export const NAVBAR_BRAND = {
   logoSrc: '/logo.png',
   logoAlt: 'شعار حصاد',
   name: 'حصاد',
-  subtitle: 'لتوريد الأعلاف',
+  subtitle: 'تجارة الأعلاف',
 } as const;
 
 export const NAVBAR_LINKS: readonly NavbarLink[] = [
@@ -39,7 +39,7 @@ export const NAVBAR_BRAND_I18N = {
     logoSrc: '/logo.png',
     logoAlt: 'Hassad logo',
     name: 'HASSAD',
-    subtitle: 'Fodder Supply',
+    subtitle: 'Feed Trading',
   },
 } as const;
 

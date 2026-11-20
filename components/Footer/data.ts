@@ -4,7 +4,7 @@ export const FOOTER_BRAND = {
   logoSrc: '/logo.png',
   logoAlt: 'شعار حصاد',
   name: 'حصاد',
-  subtitle: 'لتوريد الأعلاف',
+  subtitle: 'تجارة الأعلاف',
   description:
     'نعمل في شركة حصاد على توريد وتوفير أجود الأعلاف الخضراء والجافة ومكونات العلف للمزارع ومصانع الأعلاف، وفق مواصفات جودة معتمدة وشراكات تجارية موثوقة.',
 } as const;
@@ -56,7 +56,6 @@ export const FOOTER_COPY = {
   newsletterPlaceholder: 'أدخل بريدك الإلكتروني',
   newsletterAriaLabel: 'اشتراك',
   copyright: 'شركة حصاد لتوريد الأعلاف. جميع الحقوق محفوظة.',
-  legalLinks: ['سياسة الخصوصية', 'الشروط والأحكام', 'شهادات الجودة'] as const,
 } as const;
 
 export const FOOTER_BRAND_I18N = {
@@ -65,7 +64,7 @@ export const FOOTER_BRAND_I18N = {
     logoSrc: FOOTER_BRAND.logoSrc,
     logoAlt: 'Hassad logo',
     name: 'HASSAD',
-    subtitle: 'Fodder Supply',
+    subtitle: 'Feed Trading',
     description:
       'At Hassad, we supply premium green and dried fodder and feed ingredients to farms and feed manufacturers, backed by accredited quality specifications and reliable commercial partnerships.',
   },
@@ -119,6 +118,5 @@ export const FOOTER_COPY_I18N = {
     newsletterPlaceholder: 'Enter your email address',
     newsletterAriaLabel: 'Subscribe',
     copyright: 'Hassad Fodder Supply. All rights reserved.',
-    legalLinks: ['Privacy Policy', 'Terms and Conditions', 'Quality Certifications'] as const,
   },
 } as const;

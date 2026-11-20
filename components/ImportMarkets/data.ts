@@ -12,7 +12,7 @@ export const IMPORT_MARKETS: ImportMarket[] = [
   { name: 'مصر', flag: '/flagCountires/EG.png' },
   { name: 'باكستان', flag: '/flagCountires/PS.png' },
   { name: 'الإمارات', flag: '/flagCountires/AE.png' },
-  { name: 'فرنسا', flag: '/flagCountires/FR.png' },
+  { name: 'إسبانيا', flag: '/flagCountires/spain.png' },
 ];
 
 export const IMPORT_MARKETS_CONTENT_I18N = {
@@ -29,6 +29,6 @@ export const IMPORT_MARKETS_I18N = {
   ar: IMPORT_MARKETS,
   en: IMPORT_MARKETS.map((market, index) => ({
     ...market,
-    name: ['United States', 'Tanzania', 'Egypt', 'Pakistan', 'United Arab Emirates', 'France'][index],
+    name: ['United States', 'Tanzania', 'Egypt', 'Pakistan', 'United Arab Emirates', 'Spain'][index],
   })),
 } as const;

@@ -5,7 +5,6 @@ export const CONTACT_SECTION_COPY = {
   title: 'قنوات الاتصال والشراكة',
   description:
     'يسعد فريقنا التجاري واللوجستي بخدمتكم وتوفير عروض أسعار الأعلاف واتفاقيات التوريد على مدار الساعة.',
-  circleLabel: 'تواصل',
   heading: 'تواصل معنا',
   englishHeading: 'Contact Us',
   brand: 'HASSAD',
@@ -35,7 +34,6 @@ export const CONTACT_SECTION_COPY_I18N = {
     title: 'Contact and Partnership Channels',
     description:
       'Our commercial and logistics team is ready to provide feed quotations and supply agreements around the clock.',
-    circleLabel: 'Connect',
     heading: 'Contact Us',
     englishHeading: 'Contact Us',
     brand: 'HASSAD',

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { X, ArrowLeft, Phone, Mail } from 'lucide-react';
+import { ArrowLeft, Phone, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '@/components/LanguageProvider/component';
 import {
@@ -147,15 +147,11 @@ export default function Navbar({ onOpenQuoteModal }: NavbarProps) {
               >
                 <span
                   aria-hidden="true"
-                  className={`absolute h-0.5 w-5 rounded-full bg-current transition-transform duration-300 ${
-                    mobileMenuOpen ? 'rotate-45' : '-translate-y-[4px]'
-                  }`}
+                  className="absolute h-0.5 w-5 -translate-y-[4px] rounded-full bg-current"
                 />
                 <span
                   aria-hidden="true"
-                  className={`absolute h-0.5 w-5 rounded-full bg-current transition-transform duration-300 ${
-                    mobileMenuOpen ? '-rotate-45' : 'translate-y-[4px]'
-                  }`}
+                  className="absolute h-0.5 w-5 translate-y-[4px] rounded-full bg-current"
                 />
               </button>
             </motion.div>
@@ -193,39 +189,8 @@ export default function Navbar({ onOpenQuoteModal }: NavbarProps) {
           >
             {/* Top Container */}
             <div>
-              {/* Header with Capsule Logo & Close Button */}
-              <div className="flex items-center justify-between pb-6 border-b border-white/10">
-                <div className="flex items-center gap-2.5 rounded-full px-3 py-1.5 bg-stone-900/90 border border-white/15">
-                  <div className="relative w-8 h-8 rounded-full overflow-hidden bg-white/10 border border-white/20 p-0.5 flex items-center justify-center">
-                    <Image
-                      src={brand.logoSrc}
-                      alt={brand.logoAlt}
-                      width={32}
-                      height={32}
-                      className="w-full h-full object-contain"
-                      referrerPolicy="no-referrer"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-sm font-bold tracking-tight text-white">{brand.name}</span>
-                    <span className="text-[10px] font-semibold text-[#F3D78A]">
-                      {brand.subtitle}
-                    </span>
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  type="button"
-                  className="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 text-stone-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer border border-white/15"
-                  aria-label={copy.closeAriaLabel}
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
               {/* Navigation Links */}
-              <div className="py-6 space-y-1.5">
+              <div className="border-t border-white/10 py-6 space-y-1.5">
                 <span className="text-[10px] font-bold text-stone-400 uppercase tracking-widest block mb-2 px-2">
                   {copy.sectionHeading}
                 </span>

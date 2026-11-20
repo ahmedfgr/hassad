@@ -53,19 +53,20 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.7 }}
-            className="relative mb-16 overflow-hidden rounded-3xl border border-[#F3D78A]/35 bg-gradient-to-br from-[#76520D] via-[#8C6411] to-[#967016] p-8 text-white shadow-lg shadow-[#8C6411]/15 sm:p-12"
+            className="relative mb-16 overflow-hidden rounded-3xl border border-[#E5B842]/60 bg-[#111612] p-8 text-white shadow-[0_24px_70px_rgba(0,0,0,0.24)] sm:p-12"
           >
-            <div aria-hidden="true" className="pointer-events-none absolute -left-16 -top-24 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
-            <div aria-hidden="true" className="pointer-events-none absolute -bottom-28 -right-10 h-64 w-64 rounded-full bg-[#F3D78A]/10 blur-3xl" />
+            <div aria-hidden="true" className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#E5B842] to-transparent" />
+            <div aria-hidden="true" className="pointer-events-none absolute -left-20 -top-24 h-64 w-64 rounded-full bg-[#E5B842]/20 blur-3xl" />
+            <div aria-hidden="true" className="pointer-events-none absolute -bottom-28 -right-10 h-64 w-64 rounded-full bg-[#E5B842]/10 blur-3xl" />
             <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center justify-center gap-6 text-center">
               <div>
-                <span className="mb-2 block text-xs font-bold uppercase tracking-widest text-[#F3D78A]">
+                <span className="mb-4 inline-flex rounded-full border border-[#E5B842]/50 bg-[#E5B842]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#E5B842] backdrop-blur-sm">
                   {partnership.eyebrow}
                 </span>
-                <h3 className="mb-2.5 text-2xl font-extrabold text-white sm:text-3xl">
+                <h3 className="mb-3 text-2xl font-extrabold tracking-tight text-white sm:text-3xl lg:text-4xl">
                   {partnership.title}
                 </h3>
-                <p className="text-xs leading-relaxed text-amber-50/90 text-balance sm:text-sm">
+                <p className="text-xs leading-relaxed text-stone-300 text-balance sm:text-sm">
                   {partnership.description}
                 </p>
               </div>
@@ -74,13 +75,13 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
                 <button
                   onClick={onOpenQuoteModal}
                   type="button"
-                  className="cursor-pointer whitespace-nowrap rounded-xl border border-white bg-white px-7 py-3 text-xs font-bold text-[#76520D] transition-colors hover:bg-amber-50 active:scale-95 sm:text-sm"
+                  className="cursor-pointer whitespace-nowrap rounded-xl border border-[#E5B842] bg-[#E5B842] px-7 py-3 text-xs font-bold text-stone-950 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#E5B842]/20 active:translate-y-0 sm:text-sm"
                 >
                   {partnership.quoteLabel}
                 </button>
                 <a
                   href={partnership.contactHref}
-                  className="whitespace-nowrap rounded-xl border border-white/50 bg-[#76520D]/30 px-6 py-3 text-xs font-bold text-white transition-colors hover:bg-[#76520D]/45 active:scale-95 sm:text-sm"
+                  className="whitespace-nowrap rounded-xl border border-white/20 bg-white/5 px-6 py-3 text-xs font-bold text-white transition-all hover:-translate-y-0.5 hover:border-[#E5B842]/60 hover:bg-white/10 active:translate-y-0 sm:text-sm"
                 >
                   {partnership.contactLabel}
                 </a>
@@ -197,18 +198,10 @@ export default function Footer({ onOpenQuoteModal }: FooterProps) {
           </div>
         </div>
 
-        {/* Sub-Footer Copyright & Legal */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
+        {/* Sub-Footer Copyright */}
+        <div className="pt-8 flex items-center justify-center text-center text-xs text-stone-500">
           <div>
             © {new Date().getFullYear()} {copy.copyright}
-          </div>
-          <div className="flex items-center gap-6">
-            {copy.legalLinks.map((label, index) => (
-              <React.Fragment key={label}>
-                {index > 0 && <span aria-hidden="true">•</span>}
-                <a href="#" className="hover:text-stone-300 transition-colors">{label}</a>
-              </React.Fragment>
-            ))}
           </div>
         </div>
       </div>

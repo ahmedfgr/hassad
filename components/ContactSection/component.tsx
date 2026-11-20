@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { ArrowLeft, Mail, MessageCircle } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useLanguage } from '@/components/LanguageProvider/component';
@@ -109,9 +110,13 @@ export default function ContactSection() {
                   >
                     <div className="absolute inset-[-8px] rounded-full border border-[#D4AF37]/30" />
 
-                    <span className="text-xl font-medium text-[#F3D78A] sm:text-2xl">
-                      {copy.circleLabel}
-                    </span>
+                    <Image
+                      src="/White Petal Mandala on Black.png"
+                      alt=""
+                      fill
+                      sizes="(min-width: 1024px) 176px, (min-width: 640px) 160px, 128px"
+                      className="rounded-full object-cover"
+                    />
                   </div>
 
                   <h3 className="text-2xl font-semibold text-white sm:text-3xl lg:text-4xl">
